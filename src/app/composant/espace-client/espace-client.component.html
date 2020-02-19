@@ -1,0 +1,191 @@
+<div class="panel box-shadow animated shadow fadeInLeftBig">
+    <div class="row wrapper m-b b-b">
+        <div class="col-sm-3">
+            <h5>L'espace client</h5>
+        </div>
+        <div class="col-sm-3 col-sm-push-7">
+            <a [routerLink]="['/Gym/Dashboard/NouveauAbonne']" mat-raised-button mat-button type="button"><i class="fa fa-user"></i> Nouveau Abonné</a > 
+        </div>
+    </div>
+    <div class="panel-body">
+<section id="content" *ngIf="clientGym != null">
+    <section class="vbox">
+        <section class="scrollable bg-white">
+            <div class="wrapper-lg bg-gym fadeInLeftBig">
+                <div class="hbox">
+                    <aside class="aside-md b-5x b-r m-r-100 b-info">
+                        <div class="text-center"> <img width="50%" src="./assets/images/FileImage/{{clientGym.photo}}" alt="..."
+                                class="img-circle m-b">
+                            <div>Profile finished</div>
+                            <div class="">
+                                <div class="progress progress-xs progress-striped active inline m-b-none bg-white"
+                                    style="width:128px">
+                                    <div class="progress-bar bg-success" data-toggle="tooltip"
+                                        data-original-title="50%" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <p>50%</p>
+                        </div>
+                    </aside>
+                    <aside>
+                        <h3 class="font-bold m-b m-t-none m-l">{{clientGym.prenom }} {{clientGym.nom | uppercase}}</h3>
+
+                        <p class="doc-buttons inline m-l"> 
+                            <button (click)="openCorpulence()" mat-button class="btn btn-sm btn-info rounded m"><i class="fa fa-user-md"></i> Corpulence</button> 
+                            <button class="btn btn-sm btn-default rounded" mat-button><i class="fa fa-money"></i> Paiment</button> 
+                            <button href="#" class="btn btn-sm btn-info rounded" mat-button><i class="fa fa-bank"></i> Abonnement</button> 
+                            <button href="#" class="btn btn-sm btn-default rounded" mat-button><i class="fa fa-key"></i> Desactiver</button> 
+                        </p>
+
+                        <p><i class="fa fa-lg fa-circle-o text-primary m-r-sm"></i>
+                            <strong>{{clientGym.fonction}}</strong></p>
+                        <ul class="nav nav-pills nav-stacked aside-lg m-l">
+                            <li class="bg-light dk"><a href="#"><i class="i i-phone m-r-sm"></i> {{clientGym.telephone }}</a></li>
+                            <li class="bg-light dk"><a href="#"><i class="i i-mail m-r-sm"></i> Send
+                                    Email</a></li>
+                            <li class="bg-light dk"><a href="#"><i class="i i-chat m-r-sm"></i> IMC : </a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <ul class="nav nav-tabs m-b-n-xxs bg-light">
+                <li class="active"> <a href="#activities" data-toggle="tab" class="m-l">Activities<span
+                            class="badge bg-primary badge-sm m-l-xs">10</span></a> </li>
+                <li> <a href="#bio" data-toggle="tab">Bio</a> </li>
+                <li> <a href="#Corpulence" data-toggle="tab">Evolution Corporelle</a> </li>
+                <li> <a href="#Paiements" data-toggle="tab">Paiements</a> </li>
+                <li> <a href="#edit" data-toggle="tab">Edit profile</a> </li>
+            </ul>
+            <div class="tab-content">
+                <div class="panel tab-pane active " id="activities">
+                    <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                        <li class="list-group-item"> <a href="#" class="thumb-sm pull-left m-r-sm"> <img
+                                    src="images/a5.png" class="img-circle"> </a> <a href="#"
+                                class="clear"> <small class="pull-right">Jun 21</small> <strong
+                                    class="block">Yoha Omish</strong> <small>Morbi nec nunc
+                                    condimentum...</small> </a> </li>
+                        <li class="list-group-item"> <a href="#" class="thumb-sm pull-left m-r-sm"> <img
+                                    src="images/a6.png" class="img-circle"> </a> <a href="#"
+                                class="clear"> <small class="pull-right">May 10</small> <strong
+                                    class="block">Gole Lido</strong> <small>Vestibulum ullamcorper
+                                    sodales nisi nec...</small> </a> </li>
+                        <li class="list-group-item"> <a href="#" class="thumb-sm pull-left m-r-sm"> <img
+                                    src="images/a7.png" class="img-circle"> </a> <a href="#"
+                                class="clear"> <small class="pull-right">Jan 2</small> <strong
+                                    class="block">Jonthan Snow</strong> <small>Morbi nec nunc
+                                    condimentum...</small> </a> </li>
+                        <li class="list-group-item" href="#email-content" data-toggle="class:show"> <a
+                                href="#" class="thumb-sm pull-left m-r-sm"> <img src="images/a8.png"
+                                    class="img-circle"> </a> <a href="#" class="clear"> <small
+                                    class="pull-right">3 minuts ago</small> <strong class="block">Drew
+                                    Wllon</strong> <small>Vestibulum ullamcorper sodales nisi nec
+                                    sodales nisi nec sodales nisi nec...</small> </a> </li>
+                        <li class="list-group-item"> <a href="#" class="thumb-sm pull-left m-r-sm"> <img
+                                    src="images/a9.png" class="img-circle"> </a> <a href="#"
+                                class="clear"> <small class="pull-right">1 hour ago</small> <strong
+                                    class="block">Jonathan George</strong> <small>Morbi nec nunc
+                                    condimentum...</small> </a> </li>
+                    </ul>
+                </div>
+                <div class="tab-pane wrapper-lg" id="bio">
+                    <div class="row m-b">
+                        <div class="col-xs-6"> <small>Cell Phone</small>
+                            <div class="text-lt font-bold">1243 0303 0333</div>
+                        </div>
+                        <div class="col-xs-6"> <small>Family Phone</small>
+                            <div class="text-lt font-bold">+32(0) 3003 234 543</div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="col-xs-6"> <small>Reporter</small>
+                            <div class="text-lt font-bold">Coch Jose</div>
+                        </div>
+                        <div class="col-xs-6"> <small>Manager</small>
+                            <div class="text-lt font-bold">James Richo</div>
+                        </div>
+                    </div>
+                    <div> <small>Bio</small>
+                        <div class="text-lt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.
+                            Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris
+                            at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada
+                            augue.</div>
+                    </div>
+                </div>
+                <div class="tab-pane wrapper-lg" id="Corpulence">
+                    <div class="row m-b">
+                        <div class="col-xs-12"> <small>Reporter</small>
+                            <div class="text-lt font-bold">
+                                <app-report-corpulence></app-report-corpulence>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane wrapper-lg" id="Paiements">
+                    <div class="row m-b">
+                        <div class="col-xs-6"> <small>Cell Phone</small>
+                            <div class="text-lt font-bold">1243 0303 0333</div>
+                        </div>
+                        <div class="col-xs-6"> <small>Family Phone</small>
+                            <div class="text-lt font-bold">+32(0) 3003 234 543</div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="col-xs-6"> <small>Reporter</small>
+                            <div class="text-lt font-bold">Coch Jose</div>
+                        </div>
+                        <div class="col-xs-6"> <small>Manager</small>
+                            <div class="text-lt font-bold">James Richo</div>
+                        </div>
+                    </div>
+                    <div> <small>Bio</small>
+                        <div class="text-lt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.
+                            Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris
+                            at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada
+                            augue.</div>
+                    </div>
+                </div>
+                <div class="tab-pane wrapper-lg" id="edit">
+                    <form class="form-horizontal" method="get">
+                        <div class="form-group"> <label class="col-sm-3 control-label">Name:</label>
+                            <div class="col-sm-5"> <input type="text" class="form-control"> </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group"> <label class="col-sm-3 control-label"
+                                for="input-id-1">Email:</label>
+                            <div class="col-sm-5"> <input type="text" class="form-control"
+                                    id="input-id-1" disabled="disabled" value="drew.willon@scale.com">
+                            </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group"> <label class="col-sm-3 control-label">Password:</label>
+                            <div class="col-sm-5"> <input type="password" class="form-control"> </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group"> <label class="col-sm-3 control-label">Password
+                                Again:</label>
+                            <div class="col-sm-5"> <input type="password" class="form-control"> </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group"> <label class="col-sm-3 control-label">Phone:</label>
+                            <div class="col-sm-5"> <input type="text" class="form-control"> </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group"> <label class="col-sm-3 control-label">Bio:</label>
+                            <div class="col-sm-5"> <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-5"> <button type="submit"
+                                    class="btn btn-sm btn-primary">Update</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section> <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
+        data-target="#nav,html"></a>
+</section>
+    </div>
+</div>

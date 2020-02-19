@@ -1,0 +1,35 @@
+<section class="dropdown-menu aside-lg bg-white on animated fadeInLeft">
+    <div class="row m-l-none m-r-none m-t m-b text-center">
+        <div class="col-xs-4" *ngIf="isProprietaire">
+            <div class="padder-v"> <a [routerLink]="['/Gym/Dashboard/Paramettrage']"> <span class="m-b-xs block"> <i
+                            class="i i-keyboard i-2x text-primary-lt"></i> </span> <small
+                        class="text-muted">Paramétrage</small> </a> </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="padder-v"> <a href="#"> <span class="m-b-xs block"> <i
+                            class="i i-calendar i-2x text-danger-lt"></i> </span> <small
+                        class="text-muted">Calendar</small> </a> </div>
+        </div>
+        <div class="col-xs-4" *ngIf="isProprietaire">
+            <div class="padder-v"> <a  [routerLink]="['/Gym/Dashboard/Abonnee']"> <span class="m-b-xs block"> <i
+                            class="i i-cart i-2x text-success-lt"></i> </span> <small
+                        class="text-muted">Abonnés</small> </a> </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="padder-v"> <a href="#"> <span class="m-b-xs block"> <i
+                            class="i i-paperplane i-2x text-info-lt"></i> </span> <small
+                        class="text-muted">Trainning</small> </a> </div>
+        </div>
+        
+        <div class="col-xs-4">
+            <div class="padder-v"> <a href="#"> <span class="m-b-xs block"> <i
+                            class="i i-clock i-2x text-warning-lter"></i> </span> <small
+                        class="text-muted">Paiements</small> </a> </div>
+        </div>
+        <div class="col-xs-4" *ngIf="isProprietaire">
+            <div class="padder-v"> <a href="#"> <span class="m-b-xs block"> <i
+                            class="i i-chart i-2x text-muted"></i> </span> <small
+                        class="text-muted">Rapport</small> </a> </div>
+        </div>
+    </div>
+</section>

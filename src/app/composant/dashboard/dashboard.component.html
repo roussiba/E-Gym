@@ -1,0 +1,124 @@
+<body class="animated fadeInLeftBig">
+    <section class="vbox">
+        <app-header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow"></app-header>
+
+        <section>
+            <section class="hbox stretch">
+                <aside class="bg-black aside-md hidden-print visible-xs" id="nav">
+                    <section class="vbox">
+                        <section class="w-f scrollable">
+                            <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+                                data-size="10px" data-railOpacity="0.2">
+                                <nav class="nav-primary hidden-xs">
+                                    <div class="line dk hidden-nav-xs"></div>
+                                    <div class="text-muted text-xs hidden-nav-xs padder m-t-sm m-b-sm">Fonctionnalités</div>
+                                    <ul class="nav">
+                                        <li> <a href="mail.html#work"> <i class="i i-circle-sm text-info-dk"></i>
+                                                <span>Paramétrage</span> </a> </li>
+                                        <li> <a href="mail.html#social"> <i class="i i-circle-sm text-success-dk"></i>
+                                                <span>Calendar</span> </a> </li>
+                                        <li> <a href="mail.html#projects"> <i class="i i-circle-sm text-danger-dk"></i>
+                                                <span>Abonnement</span> </a> </li>
+                                        <li> <a href="mail.html#projects"> <i class="i i-circle-sm text-danger-dk"></i>
+                                                <span>Journalier</span> </a> </li>
+                                        <li> <a href="mail.html#projects"> <i class="i i-circle-sm text-danger-dk"></i>
+                                                <span>Rapport</span> </a> </li>
+                                        <li> <a href="mail.html#projects"> <i class="i i-circle-sm text-danger-dk"></i>
+                                                <span>Trainning</span> </a> </li>
+                                    </ul>
+                                </nav> <!-- / nav -->
+                            </div>
+                        </section>
+                        <footer class="footer hidden-xs no-padder text-center-nav-xs"> <a href="modal.lockme.html"
+                                data-toggle="ajaxModal"
+                                class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs hidden-nav-xs"> <i
+                                    class="i i-logout"></i> </a> <a href="#nav" data-toggle="class:nav-xs"
+                                class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs"> <i
+                                    class="i i-circleleft text"></i> <i class="i i-circleright text-active"></i> </a>
+                        </footer>
+                    </section>
+                </aside> <!-- /.aside -->
+                <section id="content">
+                    <section class="hbox stretch">
+                        <section>
+                            <section class="vbox">
+                                <section class="scrollable padder">
+                                    <section class="row m-b-md">
+                                        <div class="col-sm-3">
+                                            <div class="col-sm-12">
+                                            <h3 class="m-b-xs text-black">Dashboard</h3> <small>Welcome back, John
+                                                Smith, <i class="fa fa-map-marker fa-lg text-primary"></i> New York
+                                                City</small>
+                                            </div>
+                                                <div class="col-sm-12 m-t">
+                                                    <div class="row m-b">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 col-12">
+                                                            <a [routerLink]=""  mat-button (click)="openDialog()"
+                                                                class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default"> 
+                                                                <span
+                                                                        class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                            class="i i-hexagon2 i-s-base text-info hover-rotate"></i>
+                                                                        <i class="fa fa-money text-black"></i> </span> <span
+                                                                        class="clear"> <span
+                                                                            class="h3 block m-t-xs text-danger">{{montantAbonnement}}</span>
+                                                                        <small class="text-muted text-u-c">TICKET DIRECT</small>
+                                                                    </span>
+                                                                </a> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel b-a box-shadow">
+                                                        
+                                                        <div class="row m-n">
+                                                            
+                                                            <div class="col-md-12 b-b b-r"> <a href="#"
+                                                                    class="block padder-v hover"> <span
+                                                                        class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                            class="i i-hexagon2 i-s-base text-danger hover-rotate"></i>
+                                                                        <i class="i i-plus2 i-1x text-white"></i> </span> <span
+                                                                        class="clear"> <span
+                                                                            class="h3 block m-t-xs text-danger">2,000</span>
+                                                                        <small class="text-muted text-u-c">Vos recettes journalières</small>
+                                                                    </span> </a> </div>
+                                                            <div class="col-md-12 b-b"> <a href="#" class="block padder-v hover">
+                                                                    <span class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                            class="i i-hexagon2 i-s-base text-success-lt hover-rotate"></i>
+                                                                        <i class="i i-users2 i-sm text-white"></i> </span> <span
+                                                                        class="clear"> <span
+                                                                            class="h3 block m-t-xs text-success">75%</span>
+                                                                        <small class="text-muted text-u-c">Vos abonnés présents</small>
+                                                                    </span> </a> </div>
+                                                            <div class="col-md-12 b-b b-r"> <a href="#"
+                                                                    class="block padder-v hover"> <span
+                                                                        class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                            class="i i-hexagon2 i-s-base text-info hover-rotate"></i>
+                                                                        <i class="i i-location i-sm text-white"></i> </span>
+                                                                    <span class="clear"> <span
+                                                                            class="h3 block m-t-xs text-info">25 <span
+                                                                                class="text-sm">m</span></span> <small
+                                                                            class="text-muted text-u-c">Vos abonnés directs</small> </span>
+                                                                </a> </div>
+                                                            <div class="col-md-12 b-b"> <a href="#" class="block padder-v hover">
+                                                                    <span class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                            class="i i-hexagon2 i-s-base text-primary hover-rotate"></i>
+                                                                        <i class="i i-alarm i-sm text-white"></i> </span> <span
+                                                                        class="clear"> <span
+                                                                            class="h3 block m-t-xs text-primary">9:30</span>
+                                                                        <small class="text-muted text-u-c">Meeting</small>
+                                                                    </span> </a> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                        </div>
+                                        <div class="col-sm-9 b-l m-t b-4x b-info" [@routeAnimation]="getAnimationData(routerOutlet)">
+                                            <router-outlet #routerOutlet="outlet"></router-outlet>
+                                        </div>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</body>

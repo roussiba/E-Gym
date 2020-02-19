@@ -1,0 +1,131 @@
+<section class="panel panel-primary shadow m-t animated fadeInLeftBig">
+    <div class="panel-heading b-3x b-b"> Abonnement Salle de gym et de musculation</div>
+    <div class="panel panel-body">
+        <div class="row clearfix">
+            <section class="scrollable">
+                <div class="wrapper">
+                    <form (submit)="addAbonnement()" [formGroup]="abonneForm" autocomplete="off" action="" method="post" class="col-lg-12 col-xs-12 form">
+
+                    <section class="panel bg-primary lt">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12">
+                                    <div class="inline m-b">
+                                        <div class="img-thumbnail text-center" > 
+                                            <img width="51%" height="100%" class="img-thumbnail img-full img-responsive" src="./assets/images/abonnement.jpg" class="dker"> </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-xl-12">
+                                        <label class="text-white"><strong> Selectionnez une salle de gym *</strong></label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                            <select class="form-control" required formControlName="SalleId">
+                                                <option></option>
+                                                <option *ngFor="let salle of mesSalles" [value]="salle.id">{{salle.libelleSalle}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-xl-12">
+                                        <label class="text-white"><strong> Type d'abonnement *</strong></label>
+                                        <div class="input-group m-b form-control">
+                                            <span (click)="openDialogFin(null)" class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                            
+                                            <ng-multiselect-dropdown required
+                                                [placeholder]="'Abonnements salle gym'"
+                                                [data]="dropdownList"
+                                                formControlName="Abonnements"
+                                                (onSelect)="openDialogFin($event)"
+                                                [settings]="dropdownSettings">
+                                            </ng-multiselect-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xs-12 b-l b-2x b-info m-t">
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Nom *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-user2"></i></span>
+                                                <input formControlName="Nom" required type="text" class="form-control" placeholder="Nom">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Prenom *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-user2"></i></span>
+                                                <input formControlName="Prenom" required type="text" class="form-control" placeholder="Prenom">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong> Sexe *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="fa fa-male"></i><i class="fa fa-female"></i></span>
+                                                <select formControlName="Sexe" required class="form-control" placeholder="Sexe">
+                                                    <option value="Masculin">Masculin</option>
+                                                    <option value="Feminin">Feminin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Age *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-list2"></i></span>
+                                                <input formControlName="Age" required type="number" class="form-control" placeholder="Age">
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Téléphone *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-phone3"></i></span>
+                                                <input (change)="CheckTelephone(Telephone)" formControlName="Telephone" required type="text" class="form-control" placeholder="Téléphone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Téléphone Urgence *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-phone2"></i></span>
+                                                <input (change)="CheckTelephone(TelephoneUrgence)" formControlName="TelephoneUrgence" required type="text" class="form-control" placeholder="Téléphone" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-xl-12">
+                                            <label class="text-white"><strong>Photo</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-pictures"></i></span>
+                                                <input formControlName="Photo" (change)="photoChange($event)" required type="file" class="form-control" placeholder="Photo">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-center b-t b-1x b-info">
+                            <div class="row pull-out">
+                                <div class="col-xs-6 b-r b-3x b-info">
+                                    <div class="padder-v"> 
+                                        <a [routerLink]="['/Gym/Dashboard/ClientAbonnes', idSalle]" class="btn btn-info b-white b-2x bg-gym shadow">
+                                            <span class="m-b-xs h3 block text-white">
+                                                <i class="i i-users3"></i></span> <small class="text-white-50">Mes Abonnés</small> 
+                                            </a> 
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="padder-v"> 
+                                        <button type="submit" [disabled]="!abonneForm.valid" class="btn btn-info b-white b-2x bg-gym shadow">
+                                            <span class="m-b-xs h3 block text-white">
+                                                <i class="i i-user3"></i></span> <small
+                                            class="text-white-50 text-break">Valider</small> 
+                                        </button> 
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                </form>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

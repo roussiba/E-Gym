@@ -1,0 +1,62 @@
+<section class="panel box-shadow animated fadeInLeftBig">
+    <div class="row wrapper m-b b-b">
+        <div class="col-sm-12 col-lg-6 m-t col-xs-12 col-md-12">
+            Mes abonnements
+        </div>
+        <div class="col-sm-6 col-lg-3 m-t col-xs-12 col-md-6">
+            <button (click)="openNewAbonnement()" class="col-xs-12" class="btn-primary shadow" mat-raised-button  type="button"><i class="fa fa-user"></i> Nouveau Abonnement</button> 
+        </div>
+        <div class="col-sm-6 col-lg-3 m-t col-xs-12 col-md-6">
+            <a [routerLink]="['/Gym/Dashboard/Paramettrage']"  mat-raised-button class="btn-info col-xs-12" type="button"><i class="fa fa-home"></i> Mes Salles</a > 
+        </div>
+    </div>
+    <div class="panel-body" *ngIf="abonnementSalles !== undefined; else templateAbonne">
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                        <tr>
+                            <th>Actions </th>
+
+                            <th class="th-sortable" data-toggle="class">Abonnement <span
+                                    class="th-sort"> <i class="fa fa-sort-down text"></i> <i
+                                        class="fa fa-sort-up text-active"></i> <i
+                                        class="fa fa-sort"></i> </span> </th>
+                            <th>Montant d'adhésion</th>
+                            <th>Autres Frais</th>
+                            <th>Mensualité</th>
+                            <th>Promotion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let abonnement of abonnementSalles">
+                            <td class="btn-goup" data-toggle="button"> 
+                                <button class="btn btn-sm btn-primary" title="Modifier l'abonnement"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-warning  m-l" title="Activer / Deactiver"><i class="fa fa-key"></i></button>
+                                <button class="btn btn-sm btn-info  m-l" title="Promotion"><i class="fa fa-money"></i></button>
+                            </td>
+                            <td>{{abonnement.libelle}}</td>
+                            <td>{{abonnement.prixAbonnement}}</td>
+                            <td> {{abonnement.autresFrais}} </td>
+                            <td> {{abonnement.mensualite}} </td>
+                            <td> {{abonnement.promotion}} </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div *ngIf="abonnementSalles.length === 0">
+            <section class="panel panel-primary shadow-lg text-center">
+                <div class="panel-body">
+                    <p>Pas de données</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <ng-template #templateAbonne>
+        <div class="panel-body text-center" >
+            <img class="img-thumbnail" width="50" height="50" src="./assets/images/Blocks-1s-200px.gif" alt="En chargement..." />
+        </div>
+    </ng-template>
+</section>

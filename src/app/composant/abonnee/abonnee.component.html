@@ -1,0 +1,96 @@
+<div class="panel box-shadow animated fadeInLeftBig">
+    <header class="panel-heading b-b m-b">
+        <ul class="nav nav-pills pull-right">
+            <li><button *ngIf="!isPresent" (click)="getMesAbonnesPresentsToday()" class="btn btn-info b b-3x b-primary"><i class="fa fa-users"></i> Membres Présents dans la salle</button></li>
+            <li><button *ngIf="isPresent" (click)="getMesAbonnes()" class="btn btn-primary b b-3x b-info"><i class="fa fa-users"></i> Membres abonnés</button></li>
+        </ul> 
+        {{title}}
+    </header>
+    <div class="panel-body" *ngIf="mesAbonnes !== undefined; else templateAbonne">
+        <div *ngFor="let abonne of mesAbonnes; trackBy:abonne.nom" class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+            <section class="panel panel-primary shadow-lg">
+                <div class="panel-body">
+                    <div class="clearfix text-center m-t">
+                        <div class="inline">
+                            <div class="easypiechart" data-percent="75" data-line-width="5"
+                                data-bar-color="#4cc0c1" data-track-Color="#f5f5f5"
+                                data-scale-Color="false" data-size="134" data-line-cap='butt'
+                                data-animate="1000" style="height: 150px;">
+                                <div class="thumb-lg"> 
+                                    <ng-container *ngIf="abonne.photo != ''; else defaultphoto">
+                                        <img src="./assets/images/FileImage/{{abonne.photo}}"
+                                        class="img-responsive img-thumbnail" style="height: 150px !important;">
+                                    
+                                    </ng-container>
+                                    <ng-template #defaultphoto>
+                                        <img src="./assets/images/FileImage/p0.jpg"
+                                        class="img-responsive img-thumbnail" style="height: 150px !important;"> 
+                                 
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <div class="h4 text-black m-t m-b-xs">{{abonne.nom}} {{abonne.prenom}}</div> <small
+                                class="text-black m-b b-black b-b b-2x"><strong>{{abonne.telephone}}</strong></small>
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer bg-info text-center">
+                    <div class="row pull-out" *ngIf="isPresent">
+                        <div class="col-xs-6">
+                            <div class="padder-v"> 
+                                <a [routerLink]="['/Gym/Dashboard/EspaceClient', abonne.id]"
+                                routerLinkActive="router-link-active" class="btn btn-default bg-gym shadow" title="L'espace client">
+                                    <span class="m-b-xs h3 block text-white">
+                                        <i class="i i-eye2"></i></span> <small
+                                    class="text-muted">Espace</small> 
+                                </a>     
+                            </div>
+                        </div>
+                        <div class="col-xs-6 bg-gym">
+                            <div class="padder-v">
+                                <button (click)="openDialogFin(abonne.id)" class="btn btn-default shadow" title="L'abonné a quitté la salle">
+                                    <span class="m-b-xs h3 block">
+                                        <i class="i i-eye2"></i></span> <small
+                                    class="text-black">Terminer</small> 
+                                </button> 
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row pull-out" *ngIf="!isPresent">
+                        <div class="col-xs-6">
+                            <div class="padder-v"> 
+                                <a [routerLink]="['/Gym/Dashboard/EspaceClient', abonne.id]"
+                                routerLinkActive="router-link-active" class="btn btn-default bg-gym shadow" title="L'espace client">
+                                    <span class="m-b-xs h3 block text-white">
+                                        <i class="i i-eye2"></i></span> <small
+                                    class="text-muted">Espace</small> 
+                                </a>     
+                            </div>
+                        </div>
+                        <div class="col-xs-6 bg-gym">
+                            <div class="padder-v">
+                                <button mat-button (click)="openDialog(abonne.id)" class="btn btn-default shadow" title="L'abonné est présent">
+                                    <span class="m-b-xs h3 block">
+                                        <i class="i i-eye2"></i></span> <small
+                                    class="text-black">Présent</small> 
+                                </button> 
+                                </div>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </div>
+        <div *ngIf="mesAbonnes.length === 0">
+            <section class="panel panel-primary shadow-lg text-center">
+                <div class="panel-body">
+                    <p>Pas de données</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <ng-template #templateAbonne>
+        <div class="panel-body text-center" >
+            <img class="img-thumbnail" width="50" height="50" src="./assets/images/Blocks-1s-200px.gif" alt="En chargement..." />
+        </div>
+    </ng-template>
+</div>

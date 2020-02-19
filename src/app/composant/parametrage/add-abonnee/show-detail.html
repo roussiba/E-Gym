@@ -1,0 +1,36 @@
+<div class="panel" style="width: 100%;">
+    <div class="panel-heading bg-gym">
+    <h2 mat-dialog-title>Abonnement</h2>
+  </div>
+  <div class="panel-body">
+    <mat-dialog-content class="mat-typography" >
+      <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Abonnement</th>
+                <th>Montant adhésion</th>
+                <th>Mensualité</th>
+                <th>Autres frais</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data.lesAbonnementSelect">
+                <td>{{item.libelle}}</td>
+                <td>{{item.montantAdhesion}}</td>
+                <td>{{item.mensualite}}</td>
+                <td>{{item.autresFrais}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <div class="col-xs-6">
+        <div class="padder-v"> 
+            <button class="btn btn-default shadow m-l-3" mat-button mat-dialog-close>
+            <small class="text-muted">Fermer</small> 
+            </button>     
+        </div>
+    </div>
+    </mat-dialog-actions>
+  </div>
+  </div>

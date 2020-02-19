@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/css/style.css";
+ 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.bordergym{
+    border-bottom: 1px solid #177bbb !important;
+}
+
+.borderLine{
+    border-bottom:1px solid #177bbb !important;
+}
+
+.bg-gym{
+background-color: #177bbb !important;
+color: white  !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  }
+  
+  .shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  }
+
+  .ng-valiJd[required],
+  .ng-valJid.required {
+    border-right: 3px solid #42A948;
+    /* green */
+  }
+
+  .ng-invaliHd:not(form) {
+    border-right: 2px solid #a94442;
+  }
+
+  table {
+    width: 100% !important;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+
+  /* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/fonts/materialicons/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,65 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<section class="vbox">
+<header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow ">
+    <div class="navbar-header aside-md dk"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open"
+        data-target="#nav,html"> <i class="fa fa-bars"></i> </a> <a href="#" class="navbar-brand"> <img
+            src="../../../assets/images/logo.png" class="m-r-sm" alt="scale">
+        <span class="hidden-nav-xs">E-GYM </span> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
+        data-target=".user"> <i class="fa fa-cog"></i> </a> </div>
+        <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user"> 
+            <li>
+                <a [routerLink]="['/Gym/Proprietaire']"  class="dropdown-toggle bg-gym" data-toggle="dropdown">
+                    Nouveau Propriétaire <i class="i i-user2"></i>
+                </a> 
+            </li> 
+        </ul>
+</header>
+<div class="container" >
+    
+    <!-- Content here -->
+    <body class="">
+        
+        <section  id="content" class="m-t-lg wrapper-md panel b-a border animated fadeInLeftBig shadow box-shadow border-left">
+            <div class="row panel-body">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xl-6 center" style="background-color: #2b80d5 !important; height: 100% !important; margin-top: 2% !important;">
+                    <img src="../../../assets/images/aee.jpg" class="img img-responsive" /> 
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xl-6">
+                    <div class="container aside-lg panel-body "> <a class="navbar-brand block m-b shadow" href="index-2.html">E-GYM</a>
+                        <section class="m-b">
+                            
+                            <form #formUser='ngForm' autocomplete="off" (submit)='onSubmit(formUser)'>
+                                <div class="list-group">
+                                        <mat-form-field class="full-width list-group-item ">
+                                        <input matInput type="text" [(ngModel)]="userLogin.UserName" #UserName='ngModel' required
+                                            name="UserName" placeholder="Telephone" class="form-control font-14 no-border">
+                                        </mat-form-field>
+                                        <mat-form-field class="full-width list-group-item">
+                                        <input matInput type="password" [(ngModel)]="userLogin.Password" #Password='ngModel' required
+                                            name="Password" placeholder="Password" class="form-control no-border"
+                                            placeholder="Password" [type]="hide ? 'password' : 'text'" >
+                                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </mat-form-field>
+                                </div>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                    <i class="fa fa-sign-in"></i> Connecter
+                                </button>
+                                <div class="text-center m-t m-b"><a href="#"><small>Mot de passe oublié ?</small></a></div>
+                                <div class="line line-dashed"></div>
+                           </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
+
+        <!-- footer -->
+        <footer id="footer">
+            <div class="text-center padder">
+                <p> <small>E-GYM By @GENISYS &copy; 2020</small> </p>
+            </div>
+        </footer>
+    </body>
+</div>
