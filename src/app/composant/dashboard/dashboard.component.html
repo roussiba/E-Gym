@@ -1,6 +1,5 @@
-<body class="animated fadeInLeftBig">
     <section class="vbox">
-        <app-header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow"></app-header>
+        <app-header></app-header>
 
         <section>
             <section class="hbox stretch">
@@ -44,7 +43,7 @@
                             <section class="vbox">
                                 <section class="scrollable padder">
                                     <section class="row m-b-md">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3" *ngIf="!isProprietaire">
                                             <div class="col-sm-12">
                                             <h3 class="m-b-xs text-black">Dashboard</h3> <small>Welcome back, John
                                                 Smith, <i class="fa fa-map-marker fa-lg text-primary"></i> New York
@@ -76,16 +75,8 @@
                                                                             class="i i-hexagon2 i-s-base text-danger hover-rotate"></i>
                                                                         <i class="i i-plus2 i-1x text-white"></i> </span> <span
                                                                         class="clear"> <span
-                                                                            class="h3 block m-t-xs text-danger">2,000</span>
+                                                                            class="h3 block m-t-xs text-danger">{{recetteTotal}}</span>
                                                                         <small class="text-muted text-u-c">Vos recettes journalières</small>
-                                                                    </span> </a> </div>
-                                                            <div class="col-md-12 b-b"> <a href="#" class="block padder-v hover">
-                                                                    <span class="i-s i-s-2x pull-left m-r-sm"> <i
-                                                                            class="i i-hexagon2 i-s-base text-success-lt hover-rotate"></i>
-                                                                        <i class="i i-users2 i-sm text-white"></i> </span> <span
-                                                                        class="clear"> <span
-                                                                            class="h3 block m-t-xs text-success">75%</span>
-                                                                        <small class="text-muted text-u-c">Vos abonnés présents</small>
                                                                     </span> </a> </div>
                                                             <div class="col-md-12 b-b b-r"> <a href="#"
                                                                     class="block padder-v hover"> <span
@@ -93,8 +84,7 @@
                                                                             class="i i-hexagon2 i-s-base text-info hover-rotate"></i>
                                                                         <i class="i i-location i-sm text-white"></i> </span>
                                                                     <span class="clear"> <span
-                                                                            class="h3 block m-t-xs text-info">25 <span
-                                                                                class="text-sm">m</span></span> <small
+                                                                            class="h3 block m-t-xs text-info"> {{countPassager}}</span> <small
                                                                             class="text-muted text-u-c">Vos abonnés directs</small> </span>
                                                                 </a> </div>
                                                             <div class="col-md-12 b-b"> <a href="#" class="block padder-v hover">
@@ -109,7 +99,66 @@
                                                     </div>
                                                 </div>  
                                         </div>
-                                        <div class="col-sm-9 b-l m-t b-4x b-info" [@routeAnimation]="getAnimationData(routerOutlet)">
+
+                                        <div [ngClass]="(isProprietaire)?'col-sm-12':'col-sm-9'" class="b-l m-t b-2x b-info" [@routeAnimation]="getAnimationData(routerOutlet)">
+                                            <div class="row clearfix" *ngIf="!isProprietaire">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 col-12">
+                                                        <a [routerLink]=""  mat-button (click)="openDialog()"
+                                                            class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default"> 
+                                                            <span
+                                                                    class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                        class="i i-hexagon2-o i-s-base text-info hover-rotate"></i>
+                                                                    <i class="i i-users2 text-black"></i> </span> <span
+                                                                    class="clear"> <span
+                                                                        class="h3 block m-t-xs text-danger">4</span>
+                                                                    <small class="text-black ">Membres</small>
+                                                                </span>
+                                                            </a> 
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 col-12">
+                                                        <a [routerLink]=""  mat-button (click)="openDialog()"
+                                                            class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default"> 
+                                                            <span
+                                                                    class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                        class="i i-hexagon2-o i-s-base text-info hover-rotate"></i>
+                                                                    <i class="i i-vcard text-black"></i> </span> <span
+                                                                    class="clear"> <span
+                                                                        class="h3 block m-t-xs text-danger">12</span>
+                                                                    <small class="text-black">Abonnements Valides</small>
+                                                                </span>
+                                                            </a> 
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 col-12">
+                                                        <a [routerLink]=""  mat-button (click)="openDialog()"
+                                                            class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default"> 
+                                                            <span
+                                                                    class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                        class="i i-hexagon2-o i-s-base text-info hover-rotate"></i>
+                                                                    <i class="fa fa-calendar text-black"></i> </span> <span
+                                                                    class="clear"> <span
+                                                                        class="h3 block m-t-xs text-danger">4</span>
+                                                                    <small class="text-black">Programmes Aujourd'hui</small>
+                                                                </span>
+                                                            </a> 
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 col-12">
+                                                        <a [routerLink]=""  mat-button (click)="openDialog()"
+                                                            class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default"> 
+                                                            <span
+                                                                    class="i-s i-s-2x pull-left m-r-sm"> <i
+                                                                        class="i i-hexagon2-o i-s-base text-info hover-rotate"></i>
+                                                                    <i class="fa fa-barcode text-black"></i> </span> <span
+                                                                    class="clear"> <span
+                                                                        class="h3 block m-t-xs text-danger">66</span>
+                                                                    <small class="text-black">Scannés Aujourd'hui</small>
+                                                                </span>
+                                                            </a> 
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <hr class="b-2x box-shadow bg-gym">    
                                             <router-outlet #routerOutlet="outlet"></router-outlet>
                                         </div>
                                     </section>
@@ -121,4 +170,3 @@
             </section>
         </section>
     </section>
-</body>

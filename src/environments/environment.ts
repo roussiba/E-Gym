@@ -8,7 +8,9 @@ export const environment = {
   baseUrlAbonne : 'https://localhost:44306/api/Abonnement/',
   baseUrlProprietaire : 'https://localhost:44306/api/Abonnement/',
   baseUrlParamettrage: 'https://localhost:44306/api/Paramettrage/',
-  baseUrl1 : 'http://localhost:19495/user/UserProfil/'
+  baseUrlPaiement : 'https://localhost:44306/api/Paiement/',
+  baseUrlTraining : 'https://localhost:44306/api/Training/',
+  baseUrl1 : 'http://localhost:19495/user/UserProfil/',
 };
 
 /*

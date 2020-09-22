@@ -34,6 +34,13 @@ import { AbonnementSalleComponent } from './composant/parametrage/abonnement-sal
 import { NewAbonnementSalleComponent } from './composant/parametrage/new-abonnement-salle/new-abonnement-salle.component';
 import { CorpulenceComponent } from './composant/corpulence/corpulence.component';
 import { ReportCorpulenceComponent } from './composant/report-corpulence/report-corpulence.component';
+import { PaiementsComponent } from './composant/paiements/paiements.component';
+import { DetailpaiementComponent, DialogPaiement } from './composant/detailpaiement/detailpaiement.component';
+import { TrainingComponent } from './composant/training/training.component';
+import { NewtrainingComponent } from './composant/newtraining/newtraining.component';
+import { ProgrammeComponent } from './composant/programme/programme.component';
+import { EntraineurComponent } from './composant/parametrage/entraineur/entraineur.component';
+import { EntraineursComponent } from './composant/parametrage/entraineurs/entraineurs.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +57,7 @@ import { ReportCorpulenceComponent } from './composant/report-corpulence/report-
     EspaceClientComponent,
     DialogAlert,
     DialogSalleGym,
+    DialogPaiement,
     DialogDetail,
     ProprietaireComponent,
     ClientGymComponent,
@@ -58,7 +66,14 @@ import { ReportCorpulenceComponent } from './composant/report-corpulence/report-
     AbonnementSalleComponent,
     NewAbonnementSalleComponent,
     CorpulenceComponent,
-    ReportCorpulenceComponent
+    ReportCorpulenceComponent,
+    PaiementsComponent,
+    DetailpaiementComponent,
+    TrainingComponent,
+    NewtrainingComponent,
+    ProgrammeComponent,
+    EntraineurComponent,
+    EntraineursComponent
   ],
   exports:[
     MaterialDesignModule
@@ -66,9 +81,12 @@ import { ReportCorpulenceComponent } from './composant/report-corpulence/report-
   entryComponents: [
     DialogAlert, 
     DialogSalleGym,
+    DialogPaiement,
     NewAbonnementSalleComponent,
     DialogDetail,
-    CorpulenceComponent
+    CorpulenceComponent,
+    NewtrainingComponent,
+    ProgrammeComponent 
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,107 @@
+<section class="panel panel-primary animated fadeInLeftBig shadow">
+    <div class="panel-heading m-b b-3x b-b"> Préparateurs physiques
+        <a [routerLink]="['/Gym/Dashboard/Entraineurs', idSalle]" class="btn btn-info b-primary b-2x shadow-lg pull-right">
+            <span class="m-b-xs block text-white">
+                <i class="i i-users3"></i></span> <small
+            class="text-white-50 text-break">Mes Préparateurs</small> 
+        </a> 
+    </div>
+    <div class="panel panel-body">
+        <div class="row clearfix">
+            <section class="scrollable">
+                <div class="wrapper">
+                    <form (submit)="addEntraineur()" [formGroup]="EntraineurForm" autocomplete="off" action="" method="post" class="col-lg-12 col-xs-12 form">
+
+                    <section class="panel bg-primary">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12 text-center">
+                                    <div class="inline">
+                                        <div class="img-thumbnail" > 
+                                            <img width="100%" height="100%" class="img-thumbnail img-full img-responsive" src="./assets/images/coach-sportif.jpg" class="dker"> </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xs-12 b-l b-2x b-info">
+                                        <div class="form-group col-lg-6 col-md-12 col-xl-12">
+                                            <label class="text-white"><strong>Nom *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-user2"></i></span>
+                                                <input formControlName="Nom" required type="text" class="form-control" placeholder="Nom">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-12 col-xl-12">
+                                            <label class="text-white"><strong>Prenom *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-user2"></i></span>
+                                                <input formControlName="Prenom" required type="text" class="form-control" placeholder="Prenom">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong>Téléphone *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="i i-phone3"></i></span>
+                                                <input (change)="CheckTelephone(Telephone)" formControlName="Telephone" required type="text" class="form-control" placeholder="Téléphone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong> Sexe *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="fa fa-male"></i><i class="fa fa-female"></i></span>
+                                                <select formControlName="Sexe" required class="form-control" placeholder="Sexe">
+                                                    <option value="Masculin">Masculin</option>
+                                                    <option value="Feminin">Feminin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="idEntraineur == null" class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong> Password *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                <input formControlName="Password" required type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div *ngIf="Password.touched && Password.invalid" class="error-msg">
+                                                <!--<div *ngIf="Password.errors.required">password  is required</div>-->
+                                                <div *ngIf="Password.errors.minlength"><small class="text-white">minimum 6 caractères</small></div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="idEntraineur == null" class="form-group col-lg-6 col-md-6 col-xl-12">
+                                            <label class="text-white"><strong> Password Confirmé *</strong></label>
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                <input formControlName="PasswordConfirm" required type="password" class="form-control" placeholder="PasswordConfirm">
+                                            </div>
+                                            <div *ngIf="PasswordConfirm.dirty || PasswordConfirm.touched">
+                                                <small class="text-white" *ngIf="EntraineurForm.hasError('notSame')">* Le mot de passe est different.</small>
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                        <div *ngIf="idEntraineur == null" class="col-xs-12 text-center">
+                                            <div class="padder-v"> 
+                                                <button type="submit" [disabled]="!EntraineurForm.valid" class="btn btn-info b-white b-2x bg-gym shadow">
+                                                    <span class="m-b-xs h3 block text-white">
+                                                        <i class="i i-user3"></i></span> <small
+                                                    class="text-white-50 text-break">Valider</small> 
+                                                </button> 
+                                            </div>
+                                        </div>
+                                        <div *ngIf="idEntraineur != null" class="col-xs-12 text-center">
+                                            <div class="padder-v"> 
+                                                <button type="submit" [disabled]="!Prenom.valid || !Nom.valid || !Telephone.valid || !Sexe.valid" class="btn btn-info b-white b-2x bg-gym shadow">
+                                                    <span class="m-b-xs h3 block text-white">
+                                                        <i class="i i-user3"></i></span> <small
+                                                    class="text-white-50 text-break">Modifier</small> 
+                                                </button> 
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

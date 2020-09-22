@@ -19,21 +19,7 @@ export class GerantComponent implements OnInit {
   
   idGerant: any;
   idSalle : any;
-  gerantForm = this.form.group({
-    Prenom: ['', Validators.required],
-    Nom: ['', Validators.required],
-    Password: ['', [Validators.required, Validators.minLength(6)]],
-    PasswordConfirm: ['',[Validators.required, Validators.minLength(6)]],
-    Telephone: ['', Validators.compose([
-      Validators.required,
-      Validators.maxLength(9),
-      Validators.minLength(9)
-    ])],
-    Sexe: ['', Validators.required],
-    Roles:[['Gerant']],
-    TypeCompte: [0],
-    SalleGymId: [this.idSalle]
-  }, {validator: this.CheckPasswords });
+  gerantForm : any;
 
   ngOnInit() {
     this.idSalle = this.activatedRoute.snapshot.params.id;
@@ -43,6 +29,22 @@ export class GerantComponent implements OnInit {
       this.idGerant = this.activatedRoute.snapshot.params.idGerant;
       this.getGerant(this.idGerant);
       console.log('this.idGerant ---> ',this.idGerant);
+
+      this.gerantForm = this.form.group({
+        Prenom: ['', Validators.required],
+        Nom: ['', Validators.required],
+        Password: ['', [Validators.required, Validators.minLength(6)]],
+        PasswordConfirm: ['',[Validators.required, Validators.minLength(6)]],
+        Telephone: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(9),
+          Validators.minLength(9)
+        ])],
+        Sexe: ['', Validators.required],
+        Roles:[['Gerant']],
+        TypeCompte: [0],
+        SalleGymId: [this.idSalle]
+      }, {validator: this.CheckPasswords });
     }
   }
 

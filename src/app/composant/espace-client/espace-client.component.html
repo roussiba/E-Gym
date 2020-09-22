@@ -43,7 +43,8 @@
                             <li class="bg-light dk"><a href="#"><i class="i i-phone m-r-sm"></i> {{clientGym.telephone }}</a></li>
                             <li class="bg-light dk"><a href="#"><i class="i i-mail m-r-sm"></i> Send
                                     Email</a></li>
-                            <li class="bg-light dk"><a href="#"><i class="i i-chat m-r-sm"></i> IMC : </a></li>
+                            <li class="bg-light dk"><a href="#"><i class="i i-chat m-r-sm"></i> IMC : {{imc}}</a></li>
+                            <li class="bg-light dk"><a href="#"> {{description}}</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -51,9 +52,9 @@
             <ul class="nav nav-tabs m-b-n-xxs bg-light">
                 <li class="active"> <a href="#activities" data-toggle="tab" class="m-l">Activities<span
                             class="badge bg-primary badge-sm m-l-xs">10</span></a> </li>
-                <li> <a href="#bio" data-toggle="tab">Bio</a> </li>
+                <li> <a href="#bio" data-toggle="tab">Mes abonnements</a> </li>
                 <li> <a href="#Corpulence" data-toggle="tab">Evolution Corporelle</a> </li>
-                <li> <a href="#Paiements" data-toggle="tab">Paiements</a> </li>
+                <li> <a href="#Paiements" data-toggle="tab">Paiements Mensuels</a> </li>
                 <li> <a href="#edit" data-toggle="tab">Edit profile</a> </li>
             </ul>
             <div class="tab-content">
@@ -89,27 +90,51 @@
                 </div>
                 <div class="tab-pane wrapper-lg" id="bio">
                     <div class="row m-b">
-                        <div class="col-xs-6"> <small>Cell Phone</small>
-                            <div class="text-lt font-bold">1243 0303 0333</div>
-                        </div>
-                        <div class="col-xs-6"> <small>Family Phone</small>
-                            <div class="text-lt font-bold">+32(0) 3003 234 543</div>
+                        <div class="form-group col-lg-12 col-md-12 col-xl-12">
+                            <label class="text-black"><strong> Nouveau Abonnement *</strong></label>
+                            <div class="input-group m-b form-control">
+                                <span (click)="openDialogAbonnement(null)" class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                <ng-multiselect-dropdown required
+                                    [placeholder]="'Abonnements salle gym'"
+                                    [data]="dropdownList"
+                                    [(ngModel)]="newAbonnements"
+                                    (onSelect)="openDialogAbonnement($event)"
+                                    (onDeSelect)="deselectAbonnement($event)"
+                                    [settings]="dropdownSettings">
+                                </ng-multiselect-dropdown>
+                                <span class="input-group-addon"><button (click)="AddAbonnementClient()" ><i class="fa fa-save"></i> Valider</button> </span>
+
+                            </div>
                         </div>
                     </div>
                     <div class="row m-b">
-                        <div class="col-xs-6"> <small>Reporter</small>
-                            <div class="text-lt font-bold">Coch Jose</div>
-                        </div>
-                        <div class="col-xs-6"> <small>Manager</small>
-                            <div class="text-lt font-bold">James Richo</div>
-                        </div>
-                    </div>
-                    <div> <small>Bio</small>
-                        <div class="text-lt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.
-                            Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris
-                            at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada
-                            augue.</div>
+                        <ng-container *ngIf="abonnements.length > 0; else elseTemplate">
+                            <table class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table table-bordered table-info shadow">
+                                <thead>
+                                    <tr>
+                                        <th>Abonnemnt</th>
+                                        <th>Montant Mensuel</th>
+                                        <th>Montant D'adhésion</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let abonnement of abonnements">
+                                        <td>{{abonnement.abonnement.libelle}}</td>
+                                        <td *ngIf="!abonnement.isSpecial">{{abonnement.abonnement.mensualite}}</td>
+                                        <td *ngIf="abonnement.isSpecial">{{abonnement.montantSpecial}}</td>
+                                        <td>{{abonnement.abonnement.montantAdhesion}}</td>
+                                        <td class="text-center">
+                                            <button mat-raised-button mat-button title="Annulation"><i class="fa fa-clock-o"></i> Annuler</button>
+                                            <button mat-raised-button mat-button title="Montant Special"><i class="fa fa-money"></i> M Special</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <p>Pas d'abonnements</p>
+                        </ng-template>
                     </div>
                 </div>
                 <div class="tab-pane wrapper-lg" id="Corpulence">
@@ -123,27 +148,31 @@
                 </div>
                 <div class="tab-pane wrapper-lg" id="Paiements">
                     <div class="row m-b">
-                        <div class="col-xs-6"> <small>Cell Phone</small>
-                            <div class="text-lt font-bold">1243 0303 0333</div>
-                        </div>
-                        <div class="col-xs-6"> <small>Family Phone</small>
-                            <div class="text-lt font-bold">+32(0) 3003 234 543</div>
-                        </div>
-                    </div>
-                    <div class="row m-b">
-                        <div class="col-xs-6"> <small>Reporter</small>
-                            <div class="text-lt font-bold">Coch Jose</div>
-                        </div>
-                        <div class="col-xs-6"> <small>Manager</small>
-                            <div class="text-lt font-bold">James Richo</div>
-                        </div>
-                    </div>
-                    <div> <small>Bio</small>
-                        <div class="text-lt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.
-                            Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris
-                            at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada
-                            augue.</div>
+                        <ng-container *ngIf="abonnements.length > 0; else elseTemplate">
+                            <table class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table table-bordered table-info shadow">
+                                <thead>
+                                    <tr>
+                                        <th>Abonnemnt</th>
+                                        <th>Montant Mensuel</th>
+                                        <th>Montant D'adhésion</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let abonnement of abonnements">
+                                        <td>{{abonnement.abonnement.libelle}}</td>
+                                        <td>{{abonnement.abonnement.mensualite}}</td>
+                                        <td>{{abonnement.abonnement.montantAdhesion}}</td>
+                                        <td class="text-center">
+                                            <button mat-raised-button mat-button title="Paiement"><i class="fa fa-money"></i> Paiement</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <p>Pas d'abonnements</p>
+                        </ng-template>
                     </div>
                 </div>
                 <div class="tab-pane wrapper-lg" id="edit">

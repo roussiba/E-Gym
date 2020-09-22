@@ -2,6 +2,7 @@ import { Injectable, ErrorHandler } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiHttpService } from './api.http.service';
+import { roleUser } from './routing.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,13 @@ export class LoginService {
   getRoleUser(){
     const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     return payLoad.role;
+  }
+
+  getAccess(role: any){
+    if(this.getRoleUser() === role){
+      return true;
+    }
+    return false;
   }
 
   getToken() {

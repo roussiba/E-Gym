@@ -1,0 +1,222 @@
+<ng-container *ngIf="Client !== null; else elseTemplate">
+    <section class="hbox stretch bg-white">
+        <aside class="aside-lg b-r">
+            <section class="vbox">
+                <section class="scrollable">
+                    <div class="wrapper">
+                        <section class="panel panel-default no-border bg-primary lt">
+                            <div class="panel-body">
+                                <div class="row m-t-xl">
+                                    <div class="col-xs-3 text-right padder-v"> <a href="#"
+                                            class="btn btn-primary btn-icon btn-rounded m-t-xl"><i
+                                                class="i i-mail2"></i></a> </div>
+                                    <div class="col-xs-6 text-center">
+                                        <div class="inline">
+                                            <div class="easyiechart" data-percent="75"
+                                                data-line-width="6" data-bar-color="#fff"
+                                                data-track-Color="#2796de"
+                                                data-scale-Color="false" data-size="140"
+                                                data-line-cap='butt' data-animate="1000">
+                                                <div class="thumb-lg avatar"> <img
+                                                        src="./assets/images/FileImage/{{Client.photo}}" class="dker"> </div>
+                                            </div>
+                                            <div class="h4 m-t m-b-xs font-bold text-lt">
+                                                {{Client.prenom}}.{{Client.nom}}</div> <small
+                                                class="text-muted m-b">{{Client.professeion}}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3 padder-v"> <a href="#"
+                                            class="btn btn-primary btn-icon btn-rounded m-t-xl"
+                                            data-toggle="class:btn-danger"> <i
+                                                class="i i-phone text"></i> <i
+                                                class="i i-phone2 text-active"></i> </a> </div>
+                                </div>
+                                <div class="wrapper m-t-xl m-b">
+                                    <div class="row m-b">
+                                        <div class="col-xs-6 text-right"> <small>
+                                                Télephone</small>
+                                            <div class="text-lt font-bold">{{Client.telephone}}</div>
+                                        </div>
+                                        <div class="col-xs-6"> <small>Télephone Urgence</small>
+                                            <div class="text-lt font-bold">{{Client.telephoneUrgence}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer dk text-center no-border">
+                                <div class="row pull-out">
+                                    <div class="col-xs-4">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{Client.abonnements.length}}</span>
+                                            <small class="text-muted">N° Abonnés</small> </div>
+                                    </div>
+                                    <div class="col-xs-4 dker">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{paiementAbonnements.length}}</span>
+                                            <small class="text-muted">N° A. payés</small> </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{abonnementRes}}</span>
+                                            <small class="text-muted">N° A. Restants</small> </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+                </section>
+            </section>
+        </aside>
+        <aside class="col-lg-6 col-md-12 col-xs-12 b-l no-padder">
+            <section class="vbox">
+                <section class="scrollable">
+                    <div class="wrapper">
+                        <section class="panel clearfix bg-info dk">
+                            <footer class="panel-footer dk text-center no-border">
+                                <div class="row pull-out">
+                                    <div class="col-xs-4">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{ConvertToMoney(TPaiement)}}</span>
+                                            <small class="text-white">Total Mensualité</small> </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{ConvertToMoney(TPaiementAbonnements)}}</span>
+                                            <small class="text-white">Total payé</small> </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="padder-v"> <span
+                                                class="m-b-xs h3 block text-white">{{ConvertToMoney(totalRestant())}}</span>
+                                            <small class="text-white">Total Restant</small> </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                        <section class="hbox stretch on animated fadeInLeftBig" *ngIf="paiementAdd.length > 0">
+                                <section class="vbox">
+                                    <section class="scrollable">
+                                        <div class="wrapper">
+                                            <section class="panel panel-default lt">
+                                                <header class="panel-heading text-center bg-light">
+                                                    <div class="clearfix"> 
+                                                        Mode de paiement
+                                                    </div>
+                                                </header>
+                                                <div class="panel-body">
+                                                    <section class="row m-l-none m-r-none m-b text-center">
+                                                        <a [routerLink]="[{}]" (click)="openDialog(0)" class="col-xs-6 bg-primary box-shadow shadow dk lter r-l">
+                                                            <div class="wrapper">
+                                                                <div>
+                                                                    <i class="fa fa-folder fa fa-2x m-t m-b-sm text-white"></i>
+                                                                    <p class="text-muted font-bold">Cash</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a [routerLink]="[{}]"  (click)="openDialog(1)" class="col-xs-6 mr-2 box-shadow shadow lt" style="background-color: darkorange;">
+                                                            <div class="wrapper">
+                                                                <div>
+                                                                    <i class="fa fa-credit-card fa fa-2x m-t m-b-sm text-white"></i>
+                                                                    <p class="text-black font-bold">Orange-Money</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </section>
+                                                </div>
+                                                <div *ngIf="validePaiement" class="panel-footer">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-lg-push-4">
+                                                            <button mat-button class="col-lg-5 btn btn-lg btn-primary btn-block">
+                                                                <i class="fa fa-credit-card"></i> Valider le paiement
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </section>
+                                </section>
+                        </section>
+                        <section class="panel panel-default" *ngIf="paiementAbo.length > 0">
+                            <div class="panel-heading">Vos abonnements à payer</div>
+                            <div class="panel-body m-b">
+                                <ng-container *ngIf="Client.abonnements.length > 0; else elseTemplate">
+                                    <table class="col-lg-10 col-md-10 col-sm-10 col-xs-10 table table-bordered table-info shadow">
+                                        <thead>
+                                            <tr>
+                                                <th>Paiement</th>
+                                                <th>Abonnemnt</th>
+                                                <th>Montant</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let abonnement of paiementAbo">
+                                                <td>
+                                                    <mat-checkbox (click)="paiementAbonnement(abonnement.id)"></mat-checkbox>
+                                                </td>
+                                                <td>{{abonnement.abonnement.libelle}}</td>
+                                                <td>{{ConvertToMoney(abonnement.abonnement.mensualite)}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot *ngIf="paiementAdd.length > 0">
+                                            <tr class="bg-info">
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                    {{ConvertToMoney(TotalPaiement)}}
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </ng-container>
+                                    <ng-template #elseTemplate>
+                                        <p>Pas d'abonnements</p>
+                                    </ng-template>
+                            </div>
+                        </section>
+                        <section class="panel panel-default">
+                            <div class="panel-heading">Vos abonnements payés</div>
+                            <div class="panel-body m-b">
+                                <ng-container *ngIf="paiementAbonnements.length > 0">
+                                    <table class="col-lg-10 col-md-10 col-sm-10 col-xs-10 table table-bordered table-info shadow">
+                                        <thead>
+                                            <tr>
+                                                <th>Paiement</th>
+                                                <th>Abonnemnt</th>
+                                                <th>Montant</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let abonnement of paiementAbonnements">
+                                                <td><i class="fa fa-2x fa-check text-success"></i></td>
+                                                <td>{{abonnement.abonnementClient.abonnement.libelle}}</td>
+                                                <td>{{ConvertToMoney(abonnement.montantAbonnement)}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot *ngIf="paiementAbonnements.length > 0">
+                                            <tr class="bg-info">
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td colspan="2" class="text-center">
+                                                    {{ConvertToMoney(TPaiementAbonnements)}}
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </ng-container>
+                            </div>
+                        </section>
+                        
+                    </div>
+                </section>
+            </section>
+        </aside>
+    </section>
+    
+</ng-container>
+<ng-template #elseTemplate>
+    
+</ng-template>
+

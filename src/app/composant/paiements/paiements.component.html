@@ -1,0 +1,66 @@
+<form [formGroup]="data" (submit)="RechercheAbonnement()" autocomplete="off" action="" method="post" class="m-t col-lg-12 col-xs-12 form">
+<header class="header bg-white b-b b-light m-b-100">
+    <p>Recherche Abonnement </p>
+    <div class="row">
+        <div class="col-lg-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Mois et Année</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="Date">
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp
+                                startView="multi-year"
+                                (monthSelected)="chosenMonthHandler($event, dp)"
+                                panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Telephone Client</mat-label>
+                <input matInput placeholder="Télephone Client" maxlength="9" formControlName="Telephone">
+                <mat-icon matSuffix>phone</mat-icon>
+              </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Prenom Client</mat-label>
+                <input matInput placeholder="Prenom" formControlName="Prenom">
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+        </div>
+        <div class="col-lg-3"> <button type="submit" class="col-lg-12 btn btn-info btn-lg border border-success shadow borderLine1">Rechercher <i class="fa fa-search"></i></button></div>
+    </div>
+    
+</header>
+</form>
+<section class="scrollable wrapper">
+<section class="panel panel-default">
+<header class="panel-heading">Vos abonnés</header>
+<div class="row clearfix ">
+    <div class="col-lg-12 m-t">
+        <div class="col-lg-4" *ngFor="let client of clientGym">
+            <section class="panel panel-default bg-gym border shadow">
+                <header class="panel-heading ">
+                    <div class="clearfix"> <a [routerLink]="['/Gym/Dashboard/DetailPaiements', client.id, datePaiement]"
+                            class="pull-left thumb-md avatar b-3x m-r"> <img style="height: 80px !important;" class="img-thumbnail img-responsive"
+                                src="./assets/images/FileImage/{{client.photo}}"> </a>
+                        <div class="clear">
+                            <div class="h4 m-t-xs m-b-xs"> {{client.nom}} {{client.prenom}} <i
+                                    class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
+                            </div> <small class="text-muted">{{client.professeion}} ({{client.telephone}})</small>
+                        </div>
+                    </div>
+                </header>
+                <div class="list-group no-radius alt"> <a class="list-group-item"
+                    [routerLink]="['/Gym/Dashboard/DetailPaiements',client.id, datePaiement]"> <span class="badge bg-success">{{client.abonnements.length}}</span> <i
+                            class="fa fa-comment icon-muted"></i> Abonnements </a> <a
+                        class="list-group-item text-info" [routerLink]="['/Gym/Dashboard/DetailPaiements', client.id, datePaiement]"> <span
+                            class="badge bg-light">Voir</span> <i
+                            class="fa fa-eye icon-muted"></i> Details Paiements </a> </div>
+            </section>
+        </div>
+        
+    </div>
+</div>
+</section>
+</section>

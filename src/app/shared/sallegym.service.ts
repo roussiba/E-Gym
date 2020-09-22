@@ -17,4 +17,8 @@ export class SallegymService {
   public mesSalleGym(): Observable<Object>{
     return this.apiservice.get(environment.baseUrlParamettrage.concat("MesSalleGym"));
   }
+
+  GetBilan(): Observable<Object> {
+    return this.apiservice.get(environment.baseUrlParamettrage.concat("GainToDay"));
+  }
 }

@@ -9,8 +9,8 @@ export class ApiHttpService {
     private http: HttpClient
   ) { }
 
-  public get(url: string, options?: any): Observable<Object> {
-    return this.http.get<Object>(url, options);
+  public get(url: string, options?: any): Observable<any> {
+    return this.http.get<any>(url, options);
   }
   
   public post(url: string, data: any, options?: any): Observable<Object>  {

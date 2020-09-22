@@ -18,9 +18,13 @@ export class AbonnementService {
   GetAbonnementSalle(idSalle: any): Observable<Object>{
     return this.http.get(environment.baseUrlParamettrage + 'Abonnements/'+idSalle);
   }
-
+  
   NewAbonnementSalle(data: any): Observable<Object>{
     return this.http.post(environment.baseUrlParamettrage + 'AbonnementSalle', data);
+  }
+
+  AddClientPassager(PrixPassager: any): Observable<Object>{
+    return this.http.post(environment.baseUrlParamettrage + 'AddClientPassager', PrixPassager);
   }
 
   MesAbonnesPresents(): Observable<Object> {
@@ -42,12 +46,20 @@ export class AbonnementService {
     return this.http.get(environment.baseUrlParamettrage + 'GerantSalle/'+id);
   }
 
+  MesEntraineursSalle(id: any): Observable<Object> {
+    return this.http.get(environment.baseUrlParamettrage + 'MesEntraineurs/'+id);
+  }
+
   GetSalleGym(): Observable<Object> {
     return this.http.get(environment.baseUrlParamettrage + 'GetSalleGym/');
-  }
+  }AddAbonnementClient
 
   GetClientAbonne(id: any): Observable<Object> {
     return this.http.get(environment.baseUrlAbonne + 'Abonnes/'+id, {observe: 'response'});
+  }
+
+  AddClientAbonnement(data: any, idClient: any): Observable<Object> {
+    return this.http.post(environment.baseUrlAbonne + 'AddAbonnementClient', {abonnements : data, clientId: idClient }, {observe: 'response'});
   }
 
   SetClientPresent(id: any): Observable<Object> {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { AbonnementService } from 'src/app/shared/abonnement.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -16,11 +16,15 @@ export class AbonneeComponent implements OnInit {
   title: any;
   isPresent: boolean;
   textDialog: any;
+  textData:any = "MyData";
+  @Output() sendData = new EventEmitter<any>();
 
   ngOnInit() {
     this.getMesAbonnes();
   }
-
+  initData(){
+    this.sendData.emit(this.textData);
+  }
   openDialog(id: any) {
     this.textDialog = "Le client est-il présent dans la salle ?";
     const dialogRef = this.dialog.open(DialogAlert, {
