@@ -1,14 +1,12 @@
-<section id="content">
+<div class="panel panel-default">
+    <header class="panel-heading">
+        <a [routerLink]="['/Gym/Dashboard/Training']" class="btn btn-sm btn-success m-b-xs m-r active2 shadow rounded-right"><i class="i i-2x i-flow-tree m-r"></i> Mes training </a> 
+        <button (click)="openNewTraining()" class="btn btn-sm btn-default shadow m-b-xs"><i class="i i-2x i-plus2 m-r"></i>Nouveau Training</button>          
+    </header>
+    <div class="panel-body">
+        <section id="content">
     <section class="vbox">
-        
-
         <section class="scrollable wrapper-lg">
-            <div class="row m-b-lg">
-                <div class="col-sm-9"> 
-                    <a [routerLink]="['/Gym/Dashboard/Training']" class="btn btn-sm btn-success m-b-xs m-r active2 shadow rounded-right"><i class="i i-2x i-flow-tree m-r"></i> Mes training </a> 
-                    <button (click)="openNewTraining()" class="btn btn-sm btn-default shadow m-b-xs"><i class="i i-2x i-plus2 m-r"></i>Nouveau Training</button> 
-                </div>
-            </div>
             <div class="row m-b">
                 <div class="col-sm-6 col-md-4" *ngFor="let item of training; let i=index">
                     <section class="panel b-a">
@@ -54,4 +52,7 @@
         </section>
     </section> <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
         data-target="#nav,html"></a>
-</section>
+        </section>
+        
+</div>
+</div>

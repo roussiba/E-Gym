@@ -30,6 +30,8 @@ export class AddAbonneeComponent implements OnInit {
   dropdownSettings : IDropdownSettings = {};
   photoFile: any;
   idSalle: any;
+  montantTotal: any = 0;
+
   abonneForm = this.form.group({
     Prenom: ['', Validators.required],
     Nom: ['', Validators.required],
@@ -158,16 +160,44 @@ export class AddAbonneeComponent implements OnInit {
   get Abonnements(): any { return this.abonneForm.get('Abonnements'); }
   get SalleId(): any { return this.abonneForm.get('SalleId'); }
 
-  openDialogFin(items: any) {
+  ConvertToMoney(money: any) {
+    const formatter = new Intl.NumberFormat('fr-SN', {
+        style: 'currency',
+        currency: 'CFA',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(parseInt(money));
+  }
+
+  totalPaiementAbonnements(){
+    return this.lesAbonnementSelect.reduce((total,item) => total += item.montantAdhesion + item.autresFrais ,0);
+  }
+
+  openDialogFin(items: any, position: any) {
     if(items !== null){
-      this.lesAbonnements.forEach((abonn:any,index:any )=> {
-        if(abonn.id === items.id){
-          this.lesAbonnementSelect.push(abonn);
-        }
-      });
+      if(position === 0){
+        this.lesAbonnements.forEach((abonn:any, index:any )=> {
+          if(abonn.id === items.id){
+            this.lesAbonnementSelect.push(abonn);
+          }
+        });
+      }else{
+        let indexSpli:any;
+        this.lesAbonnementSelect.forEach((abonn:any, index:any )=> {
+            if(abonn.id === items.id){
+              indexSpli = index;
+              return;
+            }
+        });
+        this.lesAbonnementSelect.splice(indexSpli, 1);
+
+      }
+      
     }
+    this.montantTotal = this.totalPaiementAbonnements();
     const dialogRef = this.dialog.open(DialogDetail,{
-          data:{ lesAbonnementSelect: this.lesAbonnementSelect }
+          data:{ lesAbonnementSelect: this.lesAbonnementSelect, montantTotal: this.montantTotal },
+          width: '80%'
         }
       );
 

@@ -8,17 +8,21 @@
         <thead>
             <tr>
                 <th>Abonnement</th>
-                <th>Montant adhésion</th>
                 <th>Mensualité</th>
+                <th>Montant adhésion</th>
                 <th>Autres frais</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of data.lesAbonnementSelect">
                 <td>{{item.libelle}}</td>
-                <td>{{item.montantAdhesion}}</td>
                 <td>{{item.mensualite}}</td>
+                <td>{{item.montantAdhesion}}</td>
                 <td>{{item.autresFrais}}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right bg-info">Totaux</td>
+              <td colspan="2" class="text-left">{{data.montantTotal}}</td>
             </tr>
         </tbody>
       </table>

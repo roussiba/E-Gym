@@ -43,14 +43,14 @@ export class EntraineurComponent implements OnInit {
         ])],
         Sexe: ['', Validators.required],
         Roles:[['Entraineur']],
-        TypeCompte: [0],
+        TypeCompte: [2],
         SalleGymId: [this.idSalle]
       }, {validator: this.CheckPasswords });
     }
   }
 
   getEntraineur(id: any){
-    this.service.GetGerant(id).subscribe(
+    this.service.GetEntraineur(id).subscribe(
       data => {
         console.log(data);
         let gerant:any = data;
@@ -62,7 +62,7 @@ export class EntraineurComponent implements OnInit {
           Telephone: gerant.telephone,
           Sexe: gerant.sexe,
           Roles:[['Entraineur']],
-          TypeCompte: [0],
+          TypeCompte: [2],
           SalleGymId: gerant.salleGymId
         })
       }
@@ -72,7 +72,7 @@ export class EntraineurComponent implements OnInit {
   addEntraineur(){
     this.EntraineurForm.get('SalleGymId').setValue(parseInt(this.idSalle));
     console.log(this.EntraineurForm.value);
-    if(this.idEntraineur === null){
+    if(this.idEntraineur === null || this.idEntraineur == undefined){
       if (!this.EntraineurForm.valid) {
         return false;
       }
@@ -82,7 +82,7 @@ export class EntraineurComponent implements OnInit {
           if(data === 1){
             this.toastr.info("Enregistrement effectué !", "Entraineur");
             this.EntraineurForm.reset();
-            this.router.navigate([routingLink.routeGerants, this.idSalle]);
+            this.router.navigate([routingLink.routeEntraineurs, this.idSalle]);
           }else{
             this.toastr.error("Erreur veuillez recommencer !", "Entraineur");
           }
@@ -104,7 +104,7 @@ export class EntraineurComponent implements OnInit {
           }
         },
         err => {
-          console.error(err);
+          this.toastr.error(err.message);
         });
     }
   }

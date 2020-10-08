@@ -33,7 +33,8 @@
                                                 [placeholder]="'Abonnements salle gym'"
                                                 [data]="dropdownList"
                                                 formControlName="Abonnements"
-                                                (onSelect)="openDialogFin($event)"
+                                                (onSelect)="openDialogFin($event,0)"
+                                                (onDeSelect)="openDialogFin($event,1)"
                                                 [settings]="dropdownSettings">
                                             </ng-multiselect-dropdown>
                                         </div>

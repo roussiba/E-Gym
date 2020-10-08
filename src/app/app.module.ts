@@ -41,6 +41,8 @@ import { NewtrainingComponent } from './composant/newtraining/newtraining.compon
 import { ProgrammeComponent } from './composant/programme/programme.component';
 import { EntraineurComponent } from './composant/parametrage/entraineur/entraineur.component';
 import { EntraineursComponent } from './composant/parametrage/entraineurs/entraineurs.component';
+import { ProgrammesComponent } from './composant/programmes/programmes.component';
+import { ProgrammeClientComponent } from './composant/programme-client/programme-client.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { EntraineursComponent } from './composant/parametrage/entraineurs/entrai
     NewtrainingComponent,
     ProgrammeComponent,
     EntraineurComponent,
-    EntraineursComponent
+    EntraineursComponent,
+    ProgrammesComponent,
+    ProgrammeClientComponent
   ],
   exports:[
     MaterialDesignModule
@@ -86,7 +90,8 @@ import { EntraineursComponent } from './composant/parametrage/entraineurs/entrai
     DialogDetail,
     CorpulenceComponent,
     NewtrainingComponent,
-    ProgrammeComponent 
+    ProgrammeComponent,
+    ProgrammeClientComponent
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,7 @@ export class DetailpaiementComponent implements OnInit {
   paiementAdd: any = [];
   validePaiement: boolean = false;
   date: any;
+  title: any;
 
   constructor(private activatedRoute: ActivatedRoute, private paiement: PaiementService, 
     private toastr: ToastrService,private router: Router,
@@ -120,8 +121,9 @@ export class DetailpaiementComponent implements OnInit {
 
   openDialog(id: any) {
     this.textDialog = "Voulez-vous Valider le paiement du client ?";
+    this.title = "Paiement Abonnement";
     const dialogRef = this.dialog.open(DialogPaiement, {
-      data: { textDialog: this.textDialog },
+      data: { textDialog: this.textDialog ,title: this.title },
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){

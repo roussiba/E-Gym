@@ -1,16 +1,17 @@
 <div class="panel">
     <div class="panel-heading bg-gym">
-    <h2 mat-dialog-title>Paiement Abonnement</h2>
+    <h2 mat-dialog-title>{{data.title}}</h2>
   </div>
   <div class="panel-body">
     <mat-dialog-content class="mat-typography">
       
       <h3>{{data.textDialog}} </h3>
+      <hr>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <div class="col-xs-6">
         <div class="padder-v"> 
-            <button class="btn btn-default shadow m-l-3" mat-button mat-dialog-close>
+            <button class="btn btn-default shadow pull-left" mat-button mat-dialog-close>
             <span class="m-b-xs h3 block text-black-50">
                     <i class="fa fa-hand-o-down"></i></span> <small
                 class="text-muted">NON</small> 
@@ -19,7 +20,7 @@
     </div>
     <div class="col-xs-6">
         <div class="padder-v">
-            <button class="btn btn-default shadow" mat-button [mat-dialog-close]="data" cdkFocusInitial>
+            <button class="btn btn-default shadow pull-right" mat-button [mat-dialog-close]="data" cdkFocusInitial>
                 <span class="m-b-xs h3 block text-black-50">
                     <i class="fa fa-hand-o-up"></i></span> <small
                 class="text-black">OUI</small> 

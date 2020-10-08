@@ -26,6 +26,11 @@
                             class="i i-clock i-2x text-warning-lter"></i> </span> <small
                         class="text-muted">Paiements</small> </a> </div>
         </div>
+        <div class="col-xs-4" *ngIf="!isProprietaire">
+            <div class="padder-v"> <a [routerLink]="['/Gym/Dashboard/Programmes']"> <span class="m-b-xs block"> <i
+                            class="i i-users3 i-2x text-info-lt"></i> </span> <small
+                        class="text-muted">Nos Programmes</small> </a> </div>
+        </div>
         <div class="col-xs-4" *ngIf="isProprietaire">
             <div class="padder-v"> <a href="#"> <span class="m-b-xs block"> <i
                             class="i i-chart i-2x text-muted"></i> </span> <small

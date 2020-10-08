@@ -21,6 +21,7 @@ import { DetailpaiementComponent } from './composant/detailpaiement/detailpaieme
 import { TrainingComponent } from './composant/training/training.component';
 import { EntraineurComponent } from './composant/parametrage/entraineur/entraineur.component';
 import { EntraineursComponent } from './composant/parametrage/entraineurs/entraineurs.component';
+import { ProgrammesComponent } from './composant/programmes/programmes.component';
 
 const routes: Routes = [
   { path: 'user/login', component: LoginComponent, pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'Abonnee', component: AbonneeComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Paiements', component: PaiementsComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Training', component: TrainingComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'Programmes', component: ProgrammesComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'DetailPaiements/:id/:date', component: DetailpaiementComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'ClientAbonnes/:id', component: ClientGymComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Paramettrage', component: ParametrageComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},

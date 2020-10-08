@@ -23,6 +23,10 @@ export class ProprietaireService {
     return this.http.get(environment.baseUrlParamettrage + 'GetGerant/'+id);
   }
 
+  GetEntraineur(id: any){
+    return this.http.get(environment.baseUrlParamettrage + 'GetEntraineur/'+id);
+  }
+
   UpdateGerant(gerant: any, id: any){
     return this.http.put(environment.baseUrlParamettrage + 'UpdateGerant/'+id, gerant)
   }

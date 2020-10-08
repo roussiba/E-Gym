@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Programmes d'entrainement</div>
+    <div class="panel-body">
+        <section id="content">
+            <section class="vbox">
+                <section class="scrollable wrapper-lg">
+                    <div class="row m-b" *ngIf="programmes.length > 0" >
+                        <div class="col-sm-6 col-md-4 on animated fadeInLeft" *ngFor="let item of programmes; let i=index">
+                            <section class="panel b-a">
+                                <div class="panel-heading no-border bg-primary lt"> <span
+                                        class="pull-right badge dk m-t-sm">{{item.training.nombreParticipant}}</span> <a
+                                        [routerLink]="[ ]"
+                                        class="h4 text-lt m-t-sm m-b-sm block font-bold">{{item.training.nomTraining}}</a> </div>
+                                <div class="panel-body">
+                                    <div>
+                                        <span class="pull-right text-muted">{{item.entraineur.prenom}} {{item.entraineur.nom}}</span> 
+                                        <a [routerLink]="[ ]" class="block m-b text-ellipsis">Préparateur</a>
+                                    </div>
+                                    <div>
+                                        <span class="pull-right text-muted">{{ConvertToMoney(item.training.montantAdhesion)}}</span> 
+                                        <a [routerLink]="[ ]" class="block m-b text-ellipsis">Montant d'adhésion</a>
+                                    </div>
+                                    <div id="b-c" class="text-center">
+                                        <div class="m-b m-t text-center">
+                                            <img [src]="sanitize(localUrl[i])"
+                                                class="img-rounded img-responsive b-2x b b-info bgloading" width="100%"
+                                                height="100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="row text-center m-t">
+                                        <div class="col-xs-6 b-r b-4x">
+                                            <p class="text-black-50">Heure Debut</p>
+                                            <small class="font-thin m-r">{{item.dateTrainingDebut | date: 'dd/MM/yyyy'}}</small>
+                                            <small class="font-thin">{{item.heureDebut}}</small>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="text-black-50">Heure Fin</p>
+                                            <small class="font-thin m-r">{{item.dateTrainingFin | date: 'dd/MM/yyyy'}}</small>
+                                            <small class="font-thin">{{item.heureFin}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix panel-footer">
+                                    <button title="Programmer" mat-raised-button color="primary"
+                                        (click)="NouveauParticipant(item.id)" class="pull-right bg-gym"><i
+                                            class="i i-user2"></i> Nouveau</button>
+
+                                    <button title="Desactiver" mat-raised-button (click)="LesParticipants(item.id)"
+                                        class="btn btn-rounded btn-default"><i
+                                            class="i i-users3"></i> Participants</button>
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="btn-group"> <button type="button" class="btn btn-sm btn-default btn-rounded"><i
+                                    class="i i-arrow-left4"></i></button> <button type="button"
+                                class="btn btn-sm btn-default btn-rounded"><i class="i i-arrow-right4"></i></button>
+                        </div>
+                    </div>
+                </section>
+            </section> <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
+                data-target="#nav,html"></a>
+        </section>
+
+    </div>
+</div>

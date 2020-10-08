@@ -13,7 +13,7 @@ import { NewtrainingComponent } from '../newtraining/newtraining.component';
 export class ProgrammeComponent implements OnInit {
 
   idTraining: any;
-  mesEntraineurs: any;
+  mesEntraineurs: any = [];
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<NewtrainingComponent>,
   private form: FormBuilder , private toastr: ToastrService, private service: TrainingService) {
@@ -35,7 +35,15 @@ export class ProgrammeComponent implements OnInit {
   }
 
   AddProgramme(){
-
+    console.log(this.data.value);
+    this.service.AddProgrammeTraining(this.data.value).subscribe(
+      data => {
+        this.toastr.success("Votre programme d'entrainement est planifié.");
+      }, 
+      error =>{
+        this.toastr.error("Erreur! Veuillez recommencer la planification.");
+      }
+    );
   }
 
   onNoClick(){
@@ -45,6 +53,7 @@ export class ProgrammeComponent implements OnInit {
   getEntraineurs(){
     this.service.GetEntraineurBySalle().subscribe(
       data => {
+        console.log(data);
         this.mesEntraineurs = data;
       }
     );

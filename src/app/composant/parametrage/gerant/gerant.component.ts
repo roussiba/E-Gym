@@ -71,7 +71,7 @@ export class GerantComponent implements OnInit {
   addGerant(){
     this.gerantForm.get('SalleGymId').setValue(parseInt(this.idSalle));
     console.log(this.gerantForm.value);
-    if(this.idGerant === null){
+    if(this.idGerant === null || this.idGerant === undefined){
       if (!this.gerantForm.valid) {
         return false;
       }

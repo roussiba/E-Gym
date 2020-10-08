@@ -82,6 +82,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  openMembres(){
+    this.router.navigate([routingLink.routeMembres, 0]);
+  }
+
   getAnimationData(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
