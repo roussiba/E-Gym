@@ -7,6 +7,7 @@ import {MatDatepicker} from '@angular/material/datepicker';
 
 import * as _moment from 'moment';
 import { Moment } from 'moment';
+import { DomSanitizer } from '@angular/platform-browser';
 // tslint:disable-next-line:no-duplicate-imports
 //import {default as _rollupMoment, Moment} from 'moment';
 
@@ -49,7 +50,8 @@ export class PaiementsComponent implements OnInit {
   clientGym: any;
   data: any;
   datePaiement: any;
-  constructor(private paiementService: PaiementService,private form: FormBuilder) { }
+  localUrl: any = [];
+  constructor(private sanitizer:DomSanitizer,private paiementService: PaiementService,private form: FormBuilder) { }
   
   ngOnInit() {
     this.datePaiement = moment().format('DD-MM-YYYY');
@@ -67,6 +69,10 @@ export class PaiementsComponent implements OnInit {
       data => {
         console.log("Paiements :: ",data);
         this.clientGym = data;
+        this.clientGym.forEach(element => {
+          console.log("element ", element);
+          this.Download(element.photo);
+        });
       });
   }
 
@@ -86,6 +92,19 @@ export class PaiementsComponent implements OnInit {
         console.log("Paiements :: ",data);
         this.clientGym = data;
       });
+  }
+
+  Download(fileName: any){
+    this.paiementService.DownloadFile(fileName).subscribe(
+      data => {
+        var photo = window.URL.createObjectURL(data);
+        this.localUrl.push(photo);
+      }
+    );
+  }
+
+  sanitize(url:string){
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   public get Date() : any { return this.data.get("Date"); }

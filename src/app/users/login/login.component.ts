@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/app/shared/login.service';
 import { Router } from '@angular/router';
-import { routingLink } from 'src/app/shared/routing.service';
+import { roleUser, routingLink } from 'src/app/shared/routing.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,12 @@ export class LoginComponent implements OnInit {
     this.login.login(formUser.value).subscribe((data: any) => {
       console.log(data.token);
       this.login.setToken(data.token);
-      this.router.navigate([routingLink.routeDashboard]);
+      let role = this.login.getRoleUser();
+      if(role === roleUser.Gerant){
+        this.router.navigate([routingLink.routeDashboard]);
+      }else{
+        this.router.navigate([routingLink.routeParameter]);
+      }
     },
     err => {
       console.log(err);

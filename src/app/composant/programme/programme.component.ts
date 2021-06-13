@@ -36,14 +36,16 @@ export class ProgrammeComponent implements OnInit {
 
   AddProgramme(){
     console.log(this.data.value);
-    this.service.AddProgrammeTraining(this.data.value).subscribe(
-      data => {
-        this.toastr.success("Votre programme d'entrainement est planifié.");
-      }, 
-      error =>{
-        this.toastr.error("Erreur! Veuillez recommencer la planification.");
-      }
-    );
+    if(this.data.valid){
+      this.service.AddProgrammeTraining(this.data.value).subscribe(
+        data => {
+          this.toastr.success("Votre programme d'entrainement est planifié.");
+        }, 
+        error =>{
+          this.toastr.error("Erreur! Veuillez recommencer la planification.");
+        }
+      );
+    }
   }
 
   onNoClick(){

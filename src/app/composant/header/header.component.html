@@ -1,10 +1,9 @@
 <header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
-    <div class="container"> 
     <div class="navbar-header aside-md dk"> 
         <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open"
             data-target="#nav,html"> <i class="i i-grid"></i>
         </a> <a [routerLink]="['/Gym/Dashboard']" routerLinkActive="active"  class="navbar-brand"> <img
-                src="../../../assets/images/logo.png" class="m-r-sm" alt="scale">
+                src="./assets/images/logo.png" class="m-r-sm" alt="scale">
             <span class="hidden-nav-xs">E-GYM</span> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
             data-target=".user"> <i class="fa fa-cog"></i> </a> </div>
     <ul class="nav navbar-nav hidden-xs">
@@ -20,7 +19,7 @@
                     <div class="panel-heading b-light bg-light"> <strong>You have <span class="count">2</span>
                             notifications</strong> </div>
                     <div class="list-group list-group-alt"> <a href="#" class="media list-group-item"> <span
-                                class="pull-left thumb-sm"> <img src="../../../assets/images/a0.png" alt="..."
+                                class="pull-left thumb-sm"> <img src="./assets/images/default.jpg" alt="..."
                                     class="img-circle"> </span> <span class="media-body block m-b-none"> Use
                                 awesome animate.css<br> <small class="text-muted">10 minutes ago</small> </span>
                         </a> <a href="#" class="media list-group-item"> <span class="media-body block m-b-none">
@@ -32,11 +31,10 @@
                 </section>
             </section>
         </li>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span
-            class="thumb-sm avatar pull-left"> <img src="../../../assets/images/a0.png" alt="..."> </span>
-        John.Smith <b class="caret"></b> </a>
+        <li *ngIf="user != undefined" class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span
+            class="thumb-sm avatar pull-left"> <img src="./assets/images/default.jpg" alt="..."> </span>
+        {{user.nom}}.{{user.prenom}} <b class="caret"></b> </a>
         <app-navbar></app-navbar>
         </li>
     </ul>
-</div>
 </header>

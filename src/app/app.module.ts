@@ -3,7 +3,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { ToastrModule } from 'ngx-toastr';
-import { MatFileUploadModule } from 'angular-material-fileupload';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -43,6 +42,9 @@ import { EntraineurComponent } from './composant/parametrage/entraineur/entraine
 import { EntraineursComponent } from './composant/parametrage/entraineurs/entraineurs.component';
 import { ProgrammesComponent } from './composant/programmes/programmes.component';
 import { ProgrammeClientComponent } from './composant/programme-client/programme-client.component';
+import { AbonnementValideComponent } from './composant/abonnement-valide/abonnement-valide.component';
+import { EntreprisesComponent } from './composant/parametrage/entreprises/entreprises.component';
+import { EntrepriseComponent } from './composant/parametrage/entreprise/entreprise.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,10 @@ import { ProgrammeClientComponent } from './composant/programme-client/programme
     EntraineurComponent,
     EntraineursComponent,
     ProgrammesComponent,
-    ProgrammeClientComponent
+    ProgrammeClientComponent,
+    AbonnementValideComponent,
+    EntreprisesComponent,
+    EntrepriseComponent
   ],
   exports:[
     MaterialDesignModule
@@ -103,7 +108,6 @@ import { ProgrammeClientComponent } from './composant/programme-client/programme
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    MatFileUploadModule,
     NgMultiSelectDropDownModule.forRoot(),
     HighchartsChartModule
   ],

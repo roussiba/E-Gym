@@ -4,6 +4,8 @@ import { NewtrainingComponent } from '../newtraining/newtraining.component';
 import { TrainingService } from 'src/app/shared/training.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import { ProgrammeComponent } from '../programme/programme.component';
+import { routingLink } from 'src/app/shared/routing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-training',
@@ -12,15 +14,17 @@ import { ProgrammeComponent } from '../programme/programme.component';
 })
 export class TrainingComponent implements OnInit {
 
+  searchPrenom: any;
   training: any;
   FileDow : any
   localUrl: any = [];
-  constructor(public dialog: MatDialog, private servicetraining: TrainingService,private sanitizer:DomSanitizer) { }
+  tempMesTraining: [];
+  constructor(public dialog: MatDialog, private servicetraining: TrainingService,private sanitizer:DomSanitizer,
+      private route: Router) { }
 
   ngOnInit() {
     this.localUrl = [];
     this.GetTrainingBySalle();
-    console.log(this.localUrl);
   }
 
   GetTrainingBySalle(){
@@ -28,11 +32,20 @@ export class TrainingComponent implements OnInit {
       data => {
         console.log(data);
         this.training = data;
+        console.log(this.training);
         this.training.forEach(element => {
           this.Download(element.photo);
         });
+        this.tempMesTraining = this.training;
       }
     );
+  }
+
+  Search(){
+    this.training = this.tempMesTraining;
+    if(this.searchPrenom !== ""){
+      this.training = this.training.filter(s => s.nomTraining.toLowerCase().includes(this.searchPrenom.toLowerCase()));
+    }
   }
 
   openNewTraining(){
@@ -67,7 +80,10 @@ export class TrainingComponent implements OnInit {
   Download(fileName: any){
     this.servicetraining.DownloadFile(fileName).subscribe(
       data => {
-        this.localUrl.push(window.URL.createObjectURL(data));
+        let photo= new Photo();
+        photo.key = fileName, photo.value = window.URL.createObjectURL(data)
+        this.localUrl.push(photo);
+
       }
     );
   }
@@ -76,4 +92,10 @@ export class TrainingComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
 }
 
+
+}
+
+export class Photo{
+  key:any; value: any;
+  constructor(){}
 }

@@ -21,4 +21,13 @@ export class SallegymService {
   GetBilan(): Observable<Object> {
     return this.apiservice.get(environment.baseUrlParamettrage.concat("GainToDay"));
   }
+
+  ConvertToMoney(money: any) {
+    const formatter = new Intl.NumberFormat('fr-SN', {
+        style: 'currency',
+        currency: 'CFA',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(parseInt(money));
+  }
 }

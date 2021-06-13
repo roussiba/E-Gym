@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { CorpulenceComponent } from '../corpulence/corpulence.component';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DialogDetail } from '../parametrage/add-abonnee/add-abonnee.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-espace-client',
@@ -15,6 +16,7 @@ import { DialogDetail } from '../parametrage/add-abonnee/add-abonnee.component';
 })
 export class EspaceClientComponent implements OnInit {
 
+  photo: any;
   id: any;
   idSalle: any;
   clientGym: any;
@@ -29,7 +31,7 @@ export class EspaceClientComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
      private toast: ToastrService, private abonneService: AbonnementService,
-     public dialog: MatDialog) { 
+     public dialog: MatDialog,private sanitizer:DomSanitizer) { 
 
   }
 
@@ -107,6 +109,7 @@ export class EspaceClientComponent implements OnInit {
         this.description = result.body.description;
         this.dropdownList = result.body.abonnementSalles;
         this.lesAbonnements = result.body.abonnementSalles;
+        this.Download(this.clientGym.photo);
         console.log(result.body.abonnementSalles);
       },
       error => {
@@ -144,7 +147,20 @@ export class EspaceClientComponent implements OnInit {
         }
       );
     }
+
+    
     
   }
 
+  Download(fileName: any){
+        this.abonneService.DownloadFile(fileName).subscribe(
+          data => {
+            this.photo = window.URL.createObjectURL(data);
+          }
+        );
+      }
+    
+      sanitize(url:string){
+        return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
 }

@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FileSendService } from 'src/app/shared/file-send.service';
 import { TrainingService } from 'src/app/shared/training.service';
+import { routingLink } from 'src/app/shared/routing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newtraining',
@@ -15,8 +17,9 @@ export class NewtrainingComponent implements OnInit {
   photoSalle: any;
   typesOfShoes: string[] = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi','Samedi','Dimanche'];
   repetition: any;
+  mesAbonnements: [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<NewtrainingComponent>,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<NewtrainingComponent>, private route: Router,
   private form: FormBuilder , private toastr: ToastrService,private fileForm: FileSendService, private serviceTraining: TrainingService) { }
 
   ngOnInit() {
@@ -28,7 +31,9 @@ export class NewtrainingComponent implements OnInit {
       Repetition1: ['',Validators.required],
       NombreParticipant: ['',Validators.required],
       Photo: [''],
+      AbonnementId:[null]
     });
+    this.getAbonnementSalle();
   }
 
   AddTraining(){
@@ -39,13 +44,28 @@ export class NewtrainingComponent implements OnInit {
       console.log('formData Training --> ',formData);
       this.serviceTraining.AddNewTraining(formData).subscribe(
         data => {
-          this.toastr.success("Le Nouveau Training est enregistré.")
+          this.toastr.success("Le Nouveau Training est enregistré.");
+          this.route.navigateByUrl(routingLink.routeDashboard, { skipLocationChange: true }).then(() => {
+            this.route.navigate([routingLink.routeTraining]);
+          });
         },
         error => {
           console.log(error);
         }
       )
     }
+  }
+
+  getAbonnementSalle(){
+    this.serviceTraining.GetAbonnementSalle().subscribe(
+      data => {
+        console.log("data ----> ", data);
+        this.mesAbonnements = data;
+      },
+      erreur => {
+        this.toastr.warning("Veuillez réactualiser la page svp !","Information");
+      }
+    );
   }
 
   CheckNomTraining(){
@@ -94,5 +114,6 @@ export class NewtrainingComponent implements OnInit {
   public get Repetition1() : any { return this.data.get("Repetition1"); }
   public get NombreParticipant() : any { return this.data.get("NombreParticipant"); }
   public get Photo() : any { return this.data.get("Photo"); }
+  public get AbonnementId() : any { return this.data.get("AbonnementId"); }
 
 }

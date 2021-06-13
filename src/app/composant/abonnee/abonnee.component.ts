@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { AbonnementService } from 'src/app/shared/abonnement.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-abonnee',
@@ -10,13 +11,18 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AbonneeComponent implements OnInit {
 
-  constructor(private abonne : AbonnementService, private toastr: ToastrService,public dialog: MatDialog) { }
+  constructor(private sanitizer:DomSanitizer,private abonne : AbonnementService, private toastr: ToastrService,public dialog: MatDialog) { }
 
-  mesAbonnes: any;
+  searchPrenom: any;
+  mesAbonnes: any=[];
+  tempMesAbonnes: any=[];
+
   title: any;
+  item: any;
   isPresent: boolean;
   textDialog: any;
   textData:any = "MyData";
+  localUrl: any = [];
   @Output() sendData = new EventEmitter<any>();
 
   ngOnInit() {
@@ -59,12 +65,29 @@ export class AbonneeComponent implements OnInit {
     });
   }
 
+  Search(){
+    console.log(this.searchPrenom);
+    this.mesAbonnes = this.tempMesAbonnes;
+    if(this.searchPrenom !== ""){
+      this.mesAbonnes = this.mesAbonnes.filter(s => s.prenom.toLowerCase().includes(this.searchPrenom.toLowerCase()) 
+                                                 || s.nom.toLowerCase().includes(this.searchPrenom.toLowerCase())
+                                                 || (s.nom+" "+s.prenom).toLowerCase().includes(this.searchPrenom.toLowerCase())
+                                                 || s.telephone.toLowerCase().includes(this.searchPrenom.toLowerCase()));
+    }
+  }
+
   getMesAbonnes(){
+    this.searchPrenom = "";
     this.abonne.MesAbonnesPresents().subscribe(
       data => {
         this.title = "Les abonnés";
         this.isPresent = false;
         this.mesAbonnes = data;
+        this.mesAbonnes.forEach(element => {
+          console.log("element ", element);
+          this.Download(element.photo);
+        });
+        this.tempMesAbonnes = this.mesAbonnes;
         console.log('this mesAbonnes',this.mesAbonnes.length);
         console.log('this mesAbonnes',this.mesAbonnes);
       },
@@ -75,11 +98,13 @@ export class AbonneeComponent implements OnInit {
   }
 
   getMesAbonnesPresentsToday(){
+    this.searchPrenom = "";
     this.abonne.MesAbonnesPresentsToday().subscribe(
       data => {
         this.title = "Les abonnés dans la salle de gym";
         this.isPresent = true;
         this.mesAbonnes = data;
+        this.tempMesAbonnes = this.mesAbonnes;
       },
       error => {
         this.toastr.warning("Veuillez réactualiser la page svp !")
@@ -108,6 +133,19 @@ export class AbonneeComponent implements OnInit {
       }
     );
   }
+
+  Download(fileName: any){
+    this.abonne.DownloadFile(fileName).subscribe(
+      data => {
+        var photo = window.URL.createObjectURL(data);
+        this.localUrl.push(photo);
+      }
+    );
+  }
+
+  sanitize(url:string){
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+}
 }
 
 @Component({

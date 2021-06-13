@@ -1,0 +1,50 @@
+<section class="panel box-shadow animated fadeInLeftBig">
+    <div class="row wrapper m-b b-b">
+        <div class="col-sm-6 col-lg-3 m-t col-xs-12 col-md-6">
+            Mes Entreprises
+        </div>
+        <div class="col-sm-6 col-lg-3 col-xs-12 m-t col-md-6">
+            <div class="input-group"> <input type="text" class="input-sm form-control" placeholder="Search"> <span class="input-group-btn"> <button
+                        class="btn btn-sm btn-default" type="button">Go!</button> </span>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 m-t col-xs-12 col-md-6">
+            <a [routerLink]="['/Gym/Dashboard/Entreprise', id]" class="col-xs-12" mat-raised-button class="btn-info" type="button"><i class="fa fa-user"></i> Nouvelle Entreprise</a > 
+        </div>
+        <div class="col-sm-6 col-lg-3 m-t col-xs-12 col-md-6">
+            <a [routerLink]="['/Gym/Dashboard/Paramettrage']"  mat-raised-button class="btn-info col-xs-12" type="button"><i class="fa fa-home"></i> Mes Salles</a > 
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="mesEntreprises" class="table table-bordered"> 
+
+                  <ng-container matColumnDef="nom">
+                    <th mat-header-cell *matHeaderCellDef> Nom </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="prenom">
+                    <th mat-header-cell *matHeaderCellDef> Adresse </th>
+                    <td mat-cell *matCellDef="let element"> {{element.adresse}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="telephone">
+                    <th mat-header-cell *matHeaderCellDef> Abonnement </th>
+                    <td mat-cell *matCellDef="let element"> {{element.abonnement}} </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              </div>
+        </div>
+    </div>
+    <ng-template #templateAbonne>
+        <div class="panel-body text-center" >
+            <img class="img-thumbnail" width="50" height="50" src="./assets/images/Blocks-1s-200px.gif" alt="En chargement..." />
+        </div>
+    </ng-template>
+</section>

@@ -11,12 +11,24 @@ export class TrainingService {
 
   constructor(private apiHttp: ApiHttpService) { }
 
+  GetAbonnementSalle(){
+    return this.apiHttp.get(environment.baseUrlTraining + 'GetAbonnementSalle');
+  }
+
   AddParticipantsProgramme(formData: any){
     return this.apiHttp.post(environment.baseUrlTraining + 'AddParticipantsProgramme', formData);
   }
 
-  GetAllProgrammes(){
-    return this.apiHttp.get(environment.baseUrlTraining + 'GetAllProgrammes');
+  CompteProgrammes(){
+    return this.apiHttp.get(environment.baseUrlTraining + 'CompteProgrammes');
+  }
+
+  GetAllProgrammes(id: any){
+    return this.apiHttp.get(environment.baseUrlTraining + 'GetAllProgrammes/'+id);
+  }
+
+  GetAllAbonnement(){
+    return this.apiHttp.get(environment.baseUrlTraining + 'GetAllAbonnement');
   }
 
   GetAllAbonnesProgrammes(ProgrammeID: any, distinct: any){

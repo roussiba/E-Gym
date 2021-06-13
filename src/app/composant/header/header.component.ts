@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/shared/login.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  user: any;
+  constructor(private service: LoginService) { }
 
   ngOnInit() {
+    this.getUserConnect();
+  }
+
+  getUserConnect(){
+    this.service.getUserConnect().subscribe(
+      data => {
+        console.log(this.user);
+        this.user = data;
+        console.log(this.user);
+      }, 
+      erreur => {
+        console.log(erreur);
+      }
+    );
   }
 
 }

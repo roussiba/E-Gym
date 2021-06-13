@@ -38,12 +38,12 @@
 <header class="panel-heading">Vos abonnés</header>
 <div class="row clearfix ">
     <div class="col-lg-12 m-t">
-        <div class="col-lg-4" *ngFor="let client of clientGym">
+        <div class="col-lg-4" *ngFor="let client of clientGym; let i = index">
             <section class="panel panel-default bg-gym border shadow">
                 <header class="panel-heading ">
                     <div class="clearfix"> <a [routerLink]="['/Gym/Dashboard/DetailPaiements', client.id, datePaiement]"
                             class="pull-left thumb-md avatar b-3x m-r"> <img style="height: 80px !important;" class="img-thumbnail img-responsive"
-                                src="./assets/images/FileImage/{{client.photo}}"> </a>
+                            [src]="sanitize(localUrl[i])"> </a>
                         <div class="clear">
                             <div class="h4 m-t-xs m-b-xs"> {{client.nom}} {{client.prenom}} <i
                                     class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>

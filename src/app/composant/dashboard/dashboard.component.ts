@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AbonnementService } from 'src/app/shared/abonnement.service';
 import { ToastrService } from 'ngx-toastr';
 import { SallegymService } from 'src/app/shared/sallegym.service';
+import { TrainingService } from 'src/app/shared/training.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private service: LoginService, private router: Router, 
-    public dialog: MatDialog, 
+    public dialog: MatDialog, private serviceProgramme: TrainingService,
     private abonnementService: AbonnementService,
     private toast: ToastrService, private salleService: SallegymService) { }
 
@@ -36,11 +37,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   countPassager: any;
   countPresent: any;
   isProprietaire: boolean;
+  countProgramme: any;
+  countMembres: any;
+  countAbonnement: any;
 
   ngOnInit() {
     this.getSalleGym();
     this.recetteTotal = 0;
     this.isProprietaire = this.service.getAccess(roleUser.Proprietaire);
+    this.getNombreProgrammeToday();
   }
 
   getSalleGym(){
@@ -82,8 +87,35 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  convert(money){
+    return this.salleService.ConvertToMoney(money);
+  }
+
+  getNombreProgrammeToday(){
+    this.serviceProgramme.CompteProgrammes().subscribe(
+      data => {
+        this.countProgramme = data.countProgramme;
+        this.countMembres = data.countMembre
+        this.countAbonnement = data.countAbonnement;
+      },
+      erreur => {
+        this.countProgramme = 0;
+        this.countMembres = 0;
+        this.countAbonnement = 0;
+      }
+    );
+  }
+
   openMembres(){
     this.router.navigate([routingLink.routeMembres, 0]);
+  }
+
+  openProgrammes(){
+    this.router.navigate([routingLink.routeMembres, 0]);
+  }
+
+  openAbonnementValide(){
+    this.router.navigate([routingLink.routeAbonnement]);
   }
 
   getAnimationData(outlet: RouterOutlet) {

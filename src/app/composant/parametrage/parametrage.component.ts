@@ -10,6 +10,8 @@ import { SallegymService } from 'src/app/shared/sallegym.service';
 import { ToastrService } from 'ngx-toastr';
 import { FileSendService } from 'src/app/shared/file-send.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { routingLink } from 'src/app/shared/routing.service';
 
 @Component({
   selector: 'app-parametrage',
@@ -20,7 +22,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class ParametrageComponent implements OnInit {
 
   constructor(private abonneService: AbonnementService, public dialog: MatDialog, private salleService: SallegymService,
-    private toast: ToastrService
+    private toast: ToastrService,private router: Router
     ) { }
 
   abonnes : any;
@@ -59,7 +61,9 @@ export class ParametrageComponent implements OnInit {
       this.salle.Telephone = result.Telephone;
       this.salle.PrixPassager = result.PrixPassager;
       this.salle.Localisation = result.Localisation;
-      
+      this.router.navigate([routingLink.routeDashboard]);
+      this.router.navigate([routingLink.routeParameter]);
+
     });
   }
 
@@ -171,6 +175,7 @@ export class DialogSalleGym {
           }else{
             this.toastr.info("Veuillez recommencer une erreur est survenue","Information")
           }
+          
         },
         error => {
           this.toastr.warning("Veuillez recommencer une erreur est survenue","Information")

@@ -22,20 +22,29 @@ import { TrainingComponent } from './composant/training/training.component';
 import { EntraineurComponent } from './composant/parametrage/entraineur/entraineur.component';
 import { EntraineursComponent } from './composant/parametrage/entraineurs/entraineurs.component';
 import { ProgrammesComponent } from './composant/programmes/programmes.component';
+import { AbonnementValideComponent } from './composant/abonnement-valide/abonnement-valide.component';
+import { EntreprisesComponent } from './composant/parametrage/entreprises/entreprises.component';
+import { EntrepriseComponent } from './composant/parametrage/entreprise/entreprise.component';
 
 const routes: Routes = [
   { path: 'user/login', component: LoginComponent, pathMatch: 'full' },
   { path: 'Gym/Proprietaire', component: ProprietaireComponent, data:{ animation: 'dashboard' } },
   { path: 'Gym/Dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { permittedRoles: ['Admin', 'Proprietaire', 'Gerant']},
     children: [
+      { path: '', component: ParametrageComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard',permittedRoles: ['Admin', 'Proprietaire'] }},
       { path: '', component: AbonneeComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+
       { path: 'Abonnee', component: AbonneeComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Paiements', component: PaiementsComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Training', component: TrainingComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
-      { path: 'Programmes', component: ProgrammesComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'Programmes/:id', component: ProgrammesComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'ProgrammeSalle/:id', component: ProgrammesComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'DetailPaiements/:id/:date', component: DetailpaiementComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'ClientAbonnes/:id', component: ClientGymComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'Entreprises/:id', component: EntreprisesComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'Entreprise/:id', component: EntrepriseComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Paramettrage', component: ParametrageComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
+      { path: 'Abonnement', component: AbonnementValideComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'NouveauAbonne/:id', component: AddAbonneeComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'EspaceClient/:id', component: EspaceClientComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},
       { path: 'Gerants/:id', component: GerantsComponent,canActivate: [AuthGuard], data:{ animation: 'dashboard' }},

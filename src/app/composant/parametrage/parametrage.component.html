@@ -1,5 +1,4 @@
-<div class="panel box-shadow animated fadeInRightBig" >
-    <div class="panel-heading b-b">Vos Paramettres</div>
+<div class="panel box-shadow animated fadeInRightBig">
     <div class="panel-body">
         <section class="panel">
             <header class="panel-heading bg-gym">
@@ -9,54 +8,56 @@
             </header>
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="sallgym"> 
+                    <div class="tab-pane active" id="sallgym">
                         <section class="panel panel-primary">
                             <div class="row wrapper">
                                 <div class="col-sm-3 ">
                                     <button mat-raised-button mat-button (click)="openDialogSalleGym()" class="btn btn-s-sm btn-info" type="button"><i class="fa fa-user"></i> Nouvelle Salle</button>
                                 </div>
                                 <div class="col-sm-3 col-sm-push-6">
-                                    <div class="input-group"> <input type="text" class="input-sm form-control"
-                                            placeholder="Search"> <span class="input-group-btn"> <button
+                                    <div class="input-group"> <input type="text" class="input-sm form-control" placeholder="Search"> <span class="input-group-btn"> <button
                                                 class="btn btn-sm btn-default" type="button">Go!</button> </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <div class="row wrapper">
-                                    <div class="col-sm-6" *ngFor="let salle of salles">
+                                    <div class="col-sm-4" *ngFor="let salle of salles">
                                         <section class="panel shadow b-2x b-r b-info">
                                             <header class="panel-heading bg-light panel-default">
-                                                <div class="clearfix" > <a href="#"
-                                                        class="pull-left thumb-md avatar b-3x m-r"> <img
-                                                            src="./assets/images/a1.png"> </a>
+                                                <div class="clearfix">
+                                                    <a href="#" class="pull-left thumb-md avatar b-3x m-r"> <img src="./assets/images/a1.png"> </a>
                                                     <div class="clear">
-                                                        <div class="h3 m-t-xs m-b-xs"> {{salle.libelleSalle}} 
+                                                        <div class="h3 m-t-xs m-b-xs"> {{salle.libelleSalle}}
                                                             <button mat-icon-button title="Modifier la salle" class="btn btn-icon shadow btn-info rounded pull-right m-t-sm"><i class="fa fa-edit"></i></button>
-                                                        </div> 
+                                                        </div>
                                                         <small class="text-muted">{{salle.adresse}}</small>
                                                     </div>
                                                 </div>
                                             </header>
-                                            <div class="list-group no-radius alt"> 
-                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/Gerants', salle.id ]"> 
-                                                    <span class="badge bg-success">25</span> 
+                                            <div class="list-group no-radius alt">
+                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/Gerants', salle.id ]">
+                                                    <span class="badge bg-success"></span>
                                                     <i class="fa fa-users icon-bar"></i> Gérants Salles
-                                                </a> 
-                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/Entraineurs', salle.id ]"> 
-                                                    <span class="badge bg-success">25</span> 
+                                                </a>
+                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/Entraineurs', salle.id ]">
+                                                    <span class="badge bg-success"></span>
                                                     <i class="fa fa-users icon-bar"></i> Entraineurs Salles
-                                                </a> 
-                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/ClientAbonnes', salle.id ]"> 
-                                                    <span class="badge bg-info">16</span> 
-                                                    <i class="fa fa-group icon-bar"></i> Clients Abonnés 
-                                                </a> 
-                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/AbonnementSalle', salle.id ]"> 
-                                                    <span class="badge bg-light">5</span>
+                                                </a>
+                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/ClientAbonnes', salle.id ]">
+                                                    <span class="badge bg-info"></span>
+                                                    <i class="fa fa-group icon-bar"></i> Clients Abonnés
+                                                </a>
+                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/Entreprises', salle.id ]">
+                                                    <span class="badge bg-info"></span>
+                                                    <i class="fa fa-home icon-bar"></i> Entreprises
+                                                </a>
+                                                <a class="list-group-item" [routerLink]="[ '/Gym/Dashboard/AbonnementSalle', salle.id ]">
+                                                    <span class="badge bg-light"></span>
                                                     <i class="fa fa-credit-card icon-bar"></i> Abonnements
-                                                </a> 
-                                                <a class="list-group-item" href="#"> 
-                                                    <span class="badge bg-light">5</span>
+                                                </a>
+                                                <a class="list-group-item" href="#">
+                                                    <span class="badge bg-light"></span>
                                                     <i class="fa fa-cog icon-bar"></i> Equipements
                                                 </a>
                                             </div>
@@ -143,6 +144,6 @@
                 -->
                 </div>
             </div>
-            </section>
+        </section>
     </div>
 </div>

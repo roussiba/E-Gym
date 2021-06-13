@@ -20,6 +20,11 @@ export class LoginService {
     return this.apiHttp.post(environment.baseUrlUser + 'Register', User);
   }
 
+  getUserConnect(): Observable<Object> {
+    return this.apiHttp.get(environment.baseUrlUser + 'UserConnect');
+  }
+
+
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
     const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
@@ -31,7 +36,7 @@ export class LoginService {
         return false;
       }
     });
-    return isMatch;
+    return isMatch;774682534
   }
 
   getRoleUser(){

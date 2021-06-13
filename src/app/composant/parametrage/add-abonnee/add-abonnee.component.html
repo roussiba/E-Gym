@@ -9,7 +9,7 @@
                     <section class="panel bg-primary lt">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6 col-xs-12">
+                                <div class="col-lg-6 col-xs-12 m-t">
                                     <div class="inline m-b">
                                         <div class="img-thumbnail text-center" > 
                                             <img width="51%" height="100%" class="img-thumbnail img-full img-responsive" src="./assets/images/abonnement.jpg" class="dker"> </div>
@@ -27,7 +27,7 @@
                                     <div class="form-group col-lg-12 col-md-12 col-xl-12">
                                         <label class="text-white"><strong> Type d'abonnement *</strong></label>
                                         <div class="input-group m-b form-control">
-                                            <span (click)="openDialogFin(null)" class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                            <span (click)="openDialogFin(null,0)" class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                             
                                             <ng-multiselect-dropdown required
                                                 [placeholder]="'Abonnements salle gym'"
@@ -94,9 +94,6 @@
                                                 <input formControlName="Photo" (change)="photoChange($event)" required type="file" class="form-control" placeholder="Photo">
                                             </div>
                                         </div>
-                                        
-                                        
-                                        
                                         
                                 </div>
                             </div>

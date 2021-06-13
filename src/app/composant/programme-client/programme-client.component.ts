@@ -16,13 +16,14 @@ export class ProgrammeClientComponent implements OnInit {
   check : any = new FormControl([]);
   membres: any = [];
   participants: any = [];
+  participantsAbonnes: any =[];
   programmeId: any;
   distinct: any;
   subtasks: any = [];
   textDialog: any;
   allComplete: boolean = false;
   title: any;
-  TotalPaiement :any;
+  TotalPaiement :any = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ProgrammeClientComponent>,
   private service: TrainingService, private toast: ToastrService,public dialog: MatDialog,public dialogRefAlert: MatDialogRef<DialogPaiement>,) {
@@ -63,7 +64,8 @@ export class ProgrammeClientComponent implements OnInit {
               that.subtasks.push(task);
             });
          }else{
-          this.participants = data;
+          this.participants = data.participants;
+          this.participantsAbonnes = data.abonnes;
           this.TotalPaiement = this.participants.reduce((total,item) => total += item.montantAdhesion,0);
          }
        }
@@ -122,7 +124,7 @@ export class ProgrammeClientComponent implements OnInit {
           this.getAllAbonnes(this.programmeId, this.distinct);
           console.log(data);
           this.toast.success("Le paiement du programme est enregistré !")
-          this.dialogRef.close();
+          //this.dialogRef.close();
         }else{
           this.toast.warning("Erreur ! Recommencer");    
         }
@@ -137,7 +139,7 @@ export class ProgrammeClientComponent implements OnInit {
           this.getAllAbonnes(this.programmeId, this.distinct);
           console.log(data);
           this.toast.success("La Présence du membre est confirmée !")
-          this.dialogRef.close();
+          //this.dialogRef.close();
         }else{
           this.toast.warning("Erreur ! Recommencer");    
         }
@@ -154,7 +156,7 @@ export class ProgrammeClientComponent implements OnInit {
           this.getAllAbonnes(this.programmeId, this.distinct);
           console.log(data);
           this.toast.success("Annulation effectuée !")
-          this.dialogRef.close();
+         // this.dialogRef.close();
         }else{
           this.toast.warning("Erreur d'annulation !");    
         }

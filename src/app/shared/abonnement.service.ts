@@ -11,6 +11,10 @@ export class AbonnementService {
 
   constructor(private http: ApiHttpService) { }
 
+  DownloadFile(fileName: any){
+    return this.http.get(environment.baseUrlAbonne + 'Download/'+fileName, { responseType: 'blob'});
+  }
+
   AddAbonnement(formData: any): Observable<Object> {
     return this.http.post(environment.baseUrlAbonne + 'Abonne', formData);
   }

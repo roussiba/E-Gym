@@ -1,14 +1,20 @@
 <div class="panel panel-default">
     <header class="panel-heading">
         <a [routerLink]="['/Gym/Dashboard/Training']" class="btn btn-sm btn-success m-b-xs m-r active2 shadow rounded-right"><i class="i i-2x i-flow-tree m-r"></i> Mes training </a> 
-        <button (click)="openNewTraining()" class="btn btn-sm btn-default shadow m-b-xs"><i class="i i-2x i-plus2 m-r"></i>Nouveau Training</button>          
+        <button (click)="openNewTraining()" class="btn btn-sm btn-default shadow m-b-xs"><i class="i i-2x i-plus2 m-r"></i>Nouveau Training</button>    
+        <hr >
+        <div class="input-group b b-3x b-primary">
+            <input type="text" (input)="Search()" [(ngModel)]="searchPrenom" class="form-control" placeholder="Rechercher un entrainement"> 
+            <span class="input-group-btn"> <button
+                  class="btn btn-default" type="button">Go!</button> </span>
+          </div>      
     </header>
     <div class="panel-body">
         <section id="content">
     <section class="vbox">
         <section class="scrollable wrapper-lg">
             <div class="row m-b">
-                <div class="col-sm-6 col-md-4" *ngFor="let item of training; let i=index">
+                <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let item of training; let i=index">
                     <section class="panel b-a">
                         <div class="panel-heading no-border bg-primary lt"> <span
                                 class="pull-right badge dk m-t-sm">{{item.nombreParticipant}}</span> <a [routerLink]="[ ]"
@@ -16,9 +22,8 @@
                         <div class="panel-body"> <span class="pull-right text-muted">{{item.montantAdhesion}}</span> <a
                             [routerLink]="[ ]" class="block m-b text-ellipsis">{{item.note}}</a>
                             <div id="b-c" class="text-center">
-                               
-                                <div class="m-b m-t text-center">
-                                    <img [src]="sanitize(localUrl[i])" class="img-rounded img-responsive b-2x b b-info" width="100%" height="100%" alt="">
+                                <div class="m-b m-t text-center" style="height: 150px !important;">
+                                    <img [src]="sanitize(localUrl[i].value)" class="img-full img-rounded b-2x b b-info" width="100%" height="100%" alt="">
                                 </div>
                             </div>
                             <div class="row text-center m-t">

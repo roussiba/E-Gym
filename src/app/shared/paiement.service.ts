@@ -9,6 +9,10 @@ export class PaiementService {
 
   constructor(private api: ApiHttpService) { }
  
+  DownloadFile(fileName: any){
+    return this.api.get(environment.baseUrlAbonne + 'Download/'+fileName, { responseType: 'blob'});
+  }
+
    getClientPaiement(id: any, date: any){
     return this.api.get(environment.baseUrlPaiement + "ClientPaiement/" +id +"/"+ date, {observe: 'response'});
   }

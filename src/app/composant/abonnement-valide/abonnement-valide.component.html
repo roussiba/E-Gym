@@ -1,0 +1,25 @@
+<section class="panel panel-default animated fadeInDownBig">
+    <div class="panel-heading">Abonnements Valides d'aujourd'hui</div>
+    <section class="panel-body">
+        <div class="row">
+            <div class="col-lg-4" *ngFor="let item of abonnement">
+                <section class="panel panel-info">
+                    <header class="panel-heading">
+                        <div class="clearfix"> 
+                            <a href="#" class="pull-left thumb-md avatar b-3x m-r"><img src="./assets/images/abonne.jpg"> </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs"> {{item.libelle}} <i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
+                                </div> 
+                                <small class="text-muted">Mensualité {{ConvertToMoney(item.mensualite)}}</small><br>
+                                <small class="text-muted">Montant d'adhésion {{ConvertToMoney(item.montantAdhesion)}}</small>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="list-group no-radius alt"> 
+                        <a class="list-group-item" href="#"> <span class="badge bg-success">{{item.compteMembres}}</span> <i class="fa fa-users icon-muted"></i> Membres </a> 
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
