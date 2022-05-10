@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatTableDataSource, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
@@ -20,29 +20,20 @@ export class EntrepriseComponent implements OnInit {
   photoFile: any;
   AbonnementSelect: any;
   idSalle: any;
-  selectedItems = [];
+  selectedItems = Array<Personne>();
   dropdownSettings : IDropdownSettings = {};
-  mesEmploye = [];
+  mesEmploye: MatTableDataSource<Personne>;
   displayedColumns: string[] = ['nom', 'prenom', 'telephone', 'sexe','actions'];
   dataSource : any;
+  personne: Personne;
 
-  abonneForm = this.form.group({
-    Prenom: ['', Validators.required],
-    Nom: ['', Validators.required],
-    SalleId: ['', Validators.required],
-    Telephone: ['', Validators.compose([
-      Validators.required,
-      Validators.maxLength(9),
-      Validators.minLength(9)
-    ])],
-    TelephoneUrgence: ['', Validators.required],
-    Sexe: ['', Validators.required],
-    Age: ['', Validators.compose([
-      Validators.required,
-      Validators.maxLength(2)
-    ])],
-    Photo: [''],
-    Abonnements: [[], Validators.required]
+
+
+  entrepriseForm = this.form.group({
+    NomEntreprise: ['', Validators.required],
+    Adresse: [''],
+    AbonnementId: ['', Validators.required],
+    Employes: [[],Validators.required]
   });
 
 
@@ -50,9 +41,12 @@ export class EntrepriseComponent implements OnInit {
     private toastr: ToastrService,
     public dialog: MatDialog,
     private abonnement: AbonnementService,
-    private activatedRoute: ActivatedRoute,) { }
+    private activatedRoute: ActivatedRoute,
+    private change: ChangeDetectorRef) { }
 
   ngOnInit() {
+    console.log('this.Employes ',this.mesEmploye);
+    this.personne = new Personne();
     this.idSalle = this.activatedRoute.snapshot.params.id;
     this.getAbonnementSalle();
     this.dropdownSettings = {
@@ -66,6 +60,7 @@ export class EntrepriseComponent implements OnInit {
       showSelectedItemsAtTop: true
 
     };
+    this.mesEmploye = new MatTableDataSource();
   }
 
   addEntreprise(){
@@ -73,38 +68,43 @@ export class EntrepriseComponent implements OnInit {
   }
 
   deleteEmploye(){
-    
+
   }
 
   openDialogFin(items: any, position: any) {
     console.log('item ',items);
   }
 
-  CheckTelephone(telephone: FormControl){
-    if(Number(telephone.value)){
-      if(telephone.valid){
-        console.log("Is valide");
+  CheckTelephone(telephone: any){
+    if(Number(telephone)){
+      console.log("Is valide");
         return false;
-      }else{
-        this.toastr.warning("Completer le numéro de téléphone !");
-      }
     }else{
       this.toastr.warning("Numéro Téléphone incorrecte !");
-      telephone.setValue("");
     }
   }
 
   onItemSelect(items: any){
-    console.log('items ', items);
-    this.lesAbonnements.forEach((abonn:any,index:any )=> {
-      if(abonn.id === items.id){
-        console.log(abonn);
-        return false;
-      }
-      console.log(index);
-    });
-    
-    console.log('AbonnementId ', this.Abonnements);
+    console.log('items ', items);    
+  }
+
+  checkPersonData(personne: Personne): Boolean{
+    console.log(personne.Nom);
+    return personne.Nom !== undefined && personne.Prenom !== undefined && personne.Sexe !== undefined ? true : false;
+  }
+
+  addPersonne(){
+    console.log('this.checkPersonData(this.personne) ', this.checkPersonData(this.personne));
+    if(!this.checkPersonData(this.personne)){
+      this.toastr.warning("Veuillez renseigner les données obligatoires (*)");
+      return;
+    }
+    this.personne.index = this.mesEmploye === undefined ? 0 : this.mesEmploye.data.length +1;
+    this.mesEmploye.data.push(this.personne);
+    this.Employes.setValue(this.mesEmploye);
+    this.personne = new Personne();
+    this.mesEmploye._updateChangeSubscription();
+    console.log('this.Employes ', this.mesEmploye);
   }
 
   getAbonnementSalle(){
@@ -125,7 +125,7 @@ export class EntrepriseComponent implements OnInit {
           closeButton: true,
           progressBar: true
         });
-        this.abonneForm.get("Photo").setValue("");
+        this.entrepriseForm.get("Photo").setValue("");
         return false;
       }
       this.photoFile = fileGet;
@@ -134,12 +134,22 @@ export class EntrepriseComponent implements OnInit {
   }
 
 
-  get Prenom(): any { return this.abonneForm.get('Prenom'); }
-  get Nom(): any { return this.abonneForm.get('Nom'); }
-  get Telephone(): any { return this.abonneForm.get('Telephone'); }
-  get TelephoneUrgence(): any { return this.abonneForm.get('TelephoneUrgence'); }
-  get Sexe(): any { return this.abonneForm.get('Sexe'); }
-  get Age(): any { return this.abonneForm.get('Age'); }
-  get Abonnements(): any { return this.abonneForm.get('Abonnements'); }
+  get NomEntreprise(): any { return this.entrepriseForm.get('NomEntreprise'); }
+  get Adresse(): any { return this.entrepriseForm.get('Adresse'); }
+  get AbonnementId(): any { return this.entrepriseForm.get('AbonnementId'); }
+  get Employes(): any { return this.entrepriseForm.get('Employes'); }
 
+}
+
+export class Personne{
+  index: number;
+  Nom : string;
+  Prenom : string;
+  Sexe : string;
+  Age : number;
+  Telephone : string;
+  TelephoneUrgent : string;
+  Photo : string;
+
+  constructor(){}
 }

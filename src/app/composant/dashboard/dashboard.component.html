@@ -110,7 +110,7 @@
                                     </div>
 
                                     <div [ngClass]="(isProprietaire)?'col-sm-12':'col-sm-9'" class="b-l m-t b-2x b-info" [@routeAnimation]="getAnimationData(routerOutlet)">
-                                        <div class="row clearfix" *ngIf="!isProprietaire">
+                                        <div class="row clearfix" *ngIf="!isProprietaire" style="margin-bottom: 30px !important;">
                                             <div class="col-md-12 col-sm-12 col-xs-12 col-12">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 col-12">
                                                     <a [routerLink]="" mat-button (click)="openMembres()" class="block b-4x col-sm-12 col-xs-12 col-lg-12 box-shadow shadow b-primary padder-v hover btn btn-default">

@@ -1,5 +1,5 @@
-<form (submit)="addEntreprise()" [formGroup]="abonneForm" autocomplete="off" action="" method="post" class="col-lg-12 col-xs-12 form">
-    <section class="panel panel-primary shadow m-t animated fadeInLeftBig">
+<form (submit)="addEntreprise()" [formGroup]="entrepriseForm" autocomplete="off" action="" method="post" class="col-lg-12 col-xs-12 form">
+    <section class="panel panel-primary shadow m-t animated">
         <div class="panel-heading b-3x b-b">
             <div class="row clearfix">
 
@@ -7,20 +7,20 @@
                     <label class="text-white"><strong> Nom Entreprise *</strong></label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="i i-user2"></i></span>
-                        <input formControlName="Nom" required type="text" class="form-control input-lg" placeholder="Nom">
+                        <input formControlName="NomEntreprise" required type="text" class="form-control input-lg" placeholder="Nom">
                     </div>
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-xl-12">
                     <label class="text-white"><strong> Adresse *</strong></label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="i i-user2"></i></span>
-                        <input formControlName="Nom" required type="text" class="form-control input-lg" placeholder="Adresse">
+                        <input formControlName="Adresse" required type="text" class="form-control input-lg" placeholder="Adresse">
                     </div>
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-xl-12">
                     <label class="text-white"><strong> Abonnement *</strong></label>
                     <div class="input-group form-control">
-                        <ng-multiselect-dropdown required [placeholder]="'Abonnements salle gym'" [data]="dropdownList" formControlName="Abonnements" (onSelect)="openDialogFin($event,0)" (onDeSelect)="openDialogFin($event,1)" [settings]="dropdownSettings">
+                        <ng-multiselect-dropdown required [placeholder]="'Abonnements salle gym'" [data]="dropdownList" formControlName="AbonnementId" (onSelect)="openDialogFin($event,0)" (onDeSelect)="openDialogFin($event,1)" [settings]="dropdownSettings">
                         </ng-multiselect-dropdown>
                     </div>
                 </div>
@@ -41,87 +41,74 @@
                                             <label class="text-white"><strong>Nom *</strong></label>
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon"><i class="i i-user2"></i></span>
-                                                <input formControlName="Nom" required type="text" class="form-control" placeholder="Nom">
+                                                <input [(ngModel)]="personne.Nom" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" placeholder="Nom">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-xl-12">
                                             <label class="text-white"><strong>Prenom *</strong></label>
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon"><i class="i i-user2"></i></span>
-                                                <input formControlName="Prenom" required type="text" class="form-control" placeholder="Prenom">
+                                                <input [(ngModel)]="personne.Prenom" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" placeholder="Prenom">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-xl-12">
                                             <label class="text-white"><strong> Sexe *</strong></label>
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon"><i class="fa fa-male"></i><i class="fa fa-female"></i></span>
-                                                <select formControlName="Sexe" required class="form-control" placeholder="Sexe">
+                                                <select [(ngModel)]="personne.Sexe" [ngModelOptions]="{standalone: true}" required class="form-control" placeholder="Sexe">
                                                     <option value="Masculin">Masculin</option>
                                                     <option value="Feminin">Feminin</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
-                                            <label class="text-white"><strong>Age *</strong></label>
-                                            <div class="input-group m-b">
-                                                <span class="input-group-addon"><i class="i i-list2"></i></span>
-                                                <input formControlName="Age" required type="number" class="form-control" placeholder="Age">
-                                            </div>
-                                        </div>
 
                                         <div class="form-group col-lg-6 col-md-6 col-xl-12">
-                                            <label class="text-white"><strong>Téléphone *</strong></label>
+                                            <label class="text-white"><strong>Téléphone </strong></label>
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon"><i class="i i-phone3"></i></span>
-                                                <input (change)="CheckTelephone(Telephone)" formControlName="Telephone" required type="text" class="form-control" placeholder="Téléphone">
+                                                <input (change)="CheckTelephone(personne.Telephone)" [(ngModel)]="personne.Telephone" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" placeholder="Téléphone">
                                             </div>
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-xl-12">
-                                            <label class="text-white"><strong>Téléphone Urgence *</strong></label>
-                                            <div class="input-group m-b">
-                                                <span class="input-group-addon"><i class="i i-phone2"></i></span>
-                                                <input (change)="CheckTelephone(TelephoneUrgence)" formControlName="TelephoneUrgence" required type="text" class="form-control" placeholder="Téléphone">
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-lg-12 col-md-12 col-xl-12">
-                                            <label class="text-white"><strong>Photo</strong></label>
-                                            <div class="input-group m-b">
-                                                <span class="input-group-addon"><i class="i i-pictures"></i></span>
-                                                <input formControlName="Photo" (change)="photoChange($event)" required type="file" class="form-control" placeholder="Photo">
+                                        <div class="col-xs-12 text-center">
+                                            <div class="padder-v">
+                                                <button class="btn btn-info b-white b-2x bg-gym shadow" (click)="addPersonne()">
+                                                    <span class="m-b-xs h3 block text-white">
+                                                        <i class="i i-user3"></i></span> <small class="text-white-50">Ajouter l'employé</small>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-8 col-xs-12 b-l b-2x b-info m-t">
-                                        <section class="panel panel-info animated fadeInLeftBig">
-                                            <div class="panel-heading">La liste des employes</div>
-                                            <div class="panel-body" *ngIf="mesEmploye.length > 0">
+                                    <div class="col-lg-8 col-xs-12 b-l b-2x b-info m-t ">
+                                        <section class="panel panel-info animated fadeInLeftBig ">
+                                            <div class="panel-heading ">La liste des employes</div>
+                                            <div class="panel-body " *ngIf="mesEmploye != undefined && mesEmploye.data.length> 0">
                                                 <div class="table-responsive">
                                                     <div class="mat-elevation-z8">
                                                         <table mat-table [dataSource]="mesEmploye" class="table table-bordered">
 
                                                             <ng-container matColumnDef="nom">
                                                                 <th mat-header-cell *matHeaderCellDef> Nom </th>
-                                                                <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+                                                                <td mat-cell *matCellDef="let element"> {{element.Nom}} </td>
                                                             </ng-container>
 
                                                             <ng-container matColumnDef="prenom">
                                                                 <th mat-header-cell *matHeaderCellDef> Prenom </th>
-                                                                <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+                                                                <td mat-cell *matCellDef="let element"> {{element.Prenom}} </td>
                                                             </ng-container>
 
                                                             <ng-container matColumnDef="telephone">
                                                                 <th mat-header-cell *matHeaderCellDef> Telephone </th>
-                                                                <td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+                                                                <td mat-cell *matCellDef="let element"> {{element.Telephone}} </td>
                                                             </ng-container>
 
                                                             <ng-container matColumnDef="sexe">
                                                                 <th mat-header-cell *matHeaderCellDef> Sexe </th>
-                                                                <td mat-cell *matCellDef="let element"> {{element.sexe}} </td>
+                                                                <td mat-cell *matCellDef="let element"> {{element.Sexe}} </td>
                                                             </ng-container>
                                                             <ng-container matColumnDef="actions">
                                                                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                                                                 <td mat-cell *matCellDef="let element" class="b b-1 b-r m-l">
-                                                                    <button (click)="deleteEmploye(element.id)" routerLinkActive="router-link-active" class="btn btn-info" type="button">
+                                                                    <button (click)="deleteEmploye(element)" routerLinkActive="router-link-active" class="btn btn-info" type="button">
                                                                    <i class="i i-eye"></i>
                                                                 </button>
                                                                 </td>
@@ -145,17 +132,9 @@
                             </div>
                             <footer class="panel-footer text-center b-t b-1x b-info">
                                 <div class="row pull-out">
-                                    <div class="col-xs-4 b-r b-3x b-info">
+                                    <div class="col-xs-12 text-center">
                                         <div class="padder-v">
-                                            <a [routerLink]="['/Gym/Dashboard/ClientAbonnes', idSalle]" class="btn btn-info b-white b-2x bg-gym shadow">
-                                                <span class="m-b-xs h3 block text-white">
-                                                    <i class="i i-user3"></i></span> <small class="text-white-50">Ajouter l'employé</small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-8">
-                                        <div class="padder-v">
-                                            <button type="submit" [disabled]="!abonneForm.valid" class="btn btn-info b-white b-2x bg-gym shadow">
+                                            <button type="submit" [disabled]="!entrepriseForm.valid" class="btn btn-info b-white b-2x bg-gym shadow">
                                                 <span class="m-b-xs h3 block text-white">
                                                     <i class="i i-users3"></i></span> <small
                                                 class="text-white-50 text-break">Valider</small> 
